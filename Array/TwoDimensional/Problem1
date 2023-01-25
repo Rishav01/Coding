@@ -8,6 +8,54 @@ left or up.
 In the above array, the result will be 2 which will come from 1, -1, -1 to 3 as path.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.ardonagh.workflow.controllers;
+
+public class test {
+
+    public int sum(int[][] matrix, int sum, int firstElement){
+        int length = matrix.length;
+        int width = matrix[0].length;
+        System.out.print(length + " " + width);
+
+        int currentSum = sum;
+        int firstValue = firstElement;
+
+        int secondValue = NextElement(matrix);
+        
+        if(matrix[length-1][width-1]==secondValue){
+            currentSum = currentSum + secondValue;
+        }else{
+            sum(matrix, currentSum, secondValue);
+        }
+
+        return currentSum;
+    }
+
+    private int NextElement(int[][] matrix, ){
+        int addition = 0;
+
+
+        return 0;
+    }
+
+    public static void main(String[] args){
+        System.out.println("Solving two dimensional array");
+        int[][] twoD = new int[3][4];
+        twoD[0][0] = 1;
+        twoD[0][1] = 0;
+        twoD[0][2] = 4;
+        twoD[1][0] = -1;
+        twoD[1][1] = 2;
+        twoD[1][2] = 3;
+        twoD[2][0] = 6;
+        twoD[2][1] = 0;
+        twoD[2][2] = 1;
+
+        test test1 = new test();
+        test1.sum(twoD, 0, twoD[0][0]);
+
+    }
+}
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
