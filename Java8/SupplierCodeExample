@@ -1,0 +1,28 @@
+package com.ardonagh.workflow.controllers;
+
+import java.util.function.Supplier;
+
+//get() method example of Supplier method
+public class Test {
+
+    String name;
+    int rollNumber;
+
+     Test(String name, int rollNumber){
+        this.name = name;
+        this.rollNumber = rollNumber;
+     }
+
+    public static void main(String[] args) {
+        Supplier getStudent = () -> new Test("Rishav", 1);
+        System.out.println(getStudent.get());
+    }
+
+    @Override
+    public String toString() {
+        return "Test{" +
+                "name='" + name + '\'' +
+                ", rollNumber=" + rollNumber +
+                '}';
+    }
+}
