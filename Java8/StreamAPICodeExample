@@ -1,0 +1,149 @@
+package com.ardonagh.workflow.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+//Example of map() of stream API
+public class Test {
+
+    public static void main(String args[]){
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+
+        //finding square of each number
+        List<Integer> squares = numbers.stream().map(number -> number*number).collect(Collectors.toList());
+        System.out.print(squares);
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------
+
+package com.ardonagh.workflow.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+//Example of filter() of stream API
+public class Test {
+
+    public static void main(String args[]){
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+
+        //filtering only even numbers
+        List<Integer> evenNumbers = numbers.stream().filter(number -> number%2==0).collect(Collectors.toList());
+        System.out.println(evenNumbers);
+    }
+}
+---------------------------------------------------------------------------------------------------------------------
+
+package com.ardonagh.workflow.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+//Example of sort() of stream API
+public class Test {
+
+    public static void main(String args[]){
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(8);
+        numbers.add(3);
+        numbers.add(9);
+        numbers.add(5);
+
+        //Sorting the numbers
+        List<Integer> evenNumbers = numbers.stream().sorted().collect(Collectors.toList());
+        System.out.println(evenNumbers);
+    }
+}
+-----------------------------------------------------------------------------------------------------------------
+
+package com.ardonagh.workflow.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+//Example of distinct() of stream API
+public class Test {
+
+    public static void main(String args[]){
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(8);
+        numbers.add(3);
+        numbers.add(1);
+        numbers.add(8);
+
+        //finding the distinct numbers
+        List<Integer> evenNumbers = numbers.stream().distinct().collect(Collectors.toList());
+        System.out.println(evenNumbers);
+    }
+}
+------------------------------------------------------------------------------------------------------------------
+
+package com.ardonagh.workflow.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+//Example of forEach() of stream API
+public class Test {
+
+    public static void main(String args[]){
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(8);
+        numbers.add(3);
+        numbers.add(1);
+        numbers.add(8);
+
+        //using forEach to display each distinct number
+        numbers.stream().distinct().forEach(input -> System.out.println(input));
+    }
+}
+---------------------------------------------------------------------------------------------------------------------
+package com.ardonagh.workflow.controllers;
+
+import io.swagger.models.auth.In;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+//Example of reduce() of stream API
+public class Test {
+
+    public static void main(String args[]){
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(8);
+        numbers.add(3);
+        numbers.add(1);
+        numbers.add(8);
+
+        //using reduce to display the highest number
+        Optional<Integer> shortestNumber = numbers.stream().reduce((number1, number2) ->
+            number1>number2? number1 : number2
+        );
+
+        System.out.println(
+                numbers.stream().reduce(
+                        (number1, number2) -> number1>number2? number1 : number2));
+
+    }
+}
