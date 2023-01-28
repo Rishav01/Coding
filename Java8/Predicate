@@ -1,0 +1,155 @@
+//Normal predicate interface usage
+public class Test {
+
+    public static void main(String[] args) {
+            Predicate<Integer> greaterThan10 = (value) -> value>10;
+            System.out.println(greaterThan10.test(11));
+    }
+}
+----------------------------------------------------------------------------------------------------
+
+//Usage of default and() method of Predicate
+public class Test {
+
+    public static void main(String[] args) {
+            Predicate<Integer> greaterThan10 = (value) -> value>10;
+            Predicate<Integer> smallerThan20 = (value) -> value<20;
+            System.out.println(greaterThan10.and(smallerThan20).test(21));
+    }
+}
+---------------------------------------------------------------------------------------------------
+
+package com.ardonagh.workflow.controllers;
+
+import java.util.function.Predicate;
+
+//Usage of default or() method of Predicate
+public class Test {
+
+    public static void main(String[] args) {
+            //By Java 8, Predicate style
+            Predicate<Integer> greaterThan10 = (value) -> value>10;
+            Predicate<Integer> smallerThan20 = (value) -> value<20;
+            System.out.println(greaterThan10.or(smallerThan20).test(21));
+            
+            //By non java 8 feature
+            int value = 21;
+            boolean greaterThanTen = value>10;
+            boolean smallerThanTwenty = value<20;
+            System.out.println(greaterThanTen || smallerThanTwenty);
+            
+    }
+}
+--------------------------------------------------------------------------------------------------
+
+package com.ardonagh.workflow.controllers;
+
+import java.util.function.Predicate;
+
+//Predicate into a function or as argument
+public class Test {
+
+    public void sampleMethod(Predicate<String> stringEqualsRishav){
+        System.out.println(stringEqualsRishav.test("Rishav"));
+        System.out.println(stringEqualsRishav.test("Mishra"));
+    }
+
+    public static void main(String[] args) {
+            Test test = new Test();
+            test.sampleMethod((input) -> (input.equalsIgnoreCase("Rishav")));
+
+    }
+}
+-------------------------------------------------------------------------------------------------
+
+package com.ardonagh.workflow.controllers;
+
+import java.util.function.Predicate;
+
+//Showing negate() method
+public class Test {
+
+
+    public static void main(String[] args) {
+        Predicate<String> lengthLessThan10 = new Predicate<String>() {
+            @Override
+            public boolean test(String inputString){
+                return inputString.length()<10;
+            }
+        };
+
+        System.out.println(lengthLessThan10.negate().test("Rishav"));
+        System.out.println(lengthLessThan10.test("Rishav"));
+
+    }
+}
+-------------------------------------------------------------------------------------------------------
+
+package com.ardonagh.workflow.controllers;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
+//Predicate usage involving collections
+@Getter
+@Setter
+public class Test {
+
+    public String name;
+    public String role;
+
+    private static List<Test> filterAdmins(List<Test> users, Predicate<Test> filterPredicate){
+        List<Test> adminUsers = new ArrayList<>();
+        for(Test user: users){
+            if(filterPredicate.test(user)){
+                adminUsers.add(user);
+            }
+        }
+        return adminUsers;
+    }
+
+    public static void main(String[] args) {
+        Test user1 = new Test();
+        user1.setName("Rishav");
+        user1.setRole("Member");
+
+        Test user2 = new Test();
+        user2.setName("Priyanka");
+        user2.setRole("Admin");
+
+        List<Test> users = new ArrayList<>();
+        users.add(user1);
+        users.add(user2);
+
+        List<Test> adminUser = filterAdmins(users, (user) -> (user.getRole().equalsIgnoreCase("Admin")));
+
+        System.out.println(adminUser.get(0).getRole());
+
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------
+
+package com.ardonagh.workflow.controllers;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
+//Predicate isEqual() method example
+@Getter
+@Setter
+public class Test {
+
+    public static void main(String[] args) {
+        Predicate isEqual = Predicate.isEqual("Rishav");
+
+        System.out.println(isEqual.test("Mishra"));
+    }
+}
