@@ -1,0 +1,32 @@
+package com.ardonagh.workflow.controllers;
+
+import java.util.function.Function;
+
+//apply() method exaple for Function Interface
+public class Test {
+
+    public static void main(String[] args) {
+        Function<String, Character> returnFirstChar = (inputString) -> inputString.charAt(0);
+        System.out.println(returnFirstChar.apply("Rishav"));
+    }
+}
+-----------------------------------------------------------------------------------------------------------------
+
+package com.ardonagh.workflow.controllers;
+
+import java.util.function.Function;
+
+//andThen() and compose() method example for Function Interface
+public class Test {
+
+    public static void main(String[] args) {
+            Function<String, Character> returnFirstChar = (inputString) -> inputString.charAt(0);
+
+            Function<Character, String> appendA = (character) -> character.toString().concat("A");
+
+            System.out.println(returnFirstChar.compose(appendA).apply('A'));
+
+    }
+}
+----------------------------------------------------------------------------------------------------------------
+
