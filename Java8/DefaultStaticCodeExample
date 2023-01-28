@@ -1,0 +1,14 @@
+package com.ardonagh.workflow.controllers;
+
+@java.lang.FunctionalInterface
+public interface FunctionalInterface<T> {
+    public T reverseString(T input);
+
+    default void defaultMethod(){
+        System.out.println("defaultMethodInterface");
+    }
+
+    static void staticMethod(){
+        System.out.println("staticMethodInterface");
+    }
+}
