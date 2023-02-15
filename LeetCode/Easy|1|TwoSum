@@ -1,0 +1,51 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {        
+        //get a map from the input array
+        Map<Integer, Integer> numMap = new HashMap<>();
+        for(int i=0; i<nums.length; i++){
+            numMap.put(nums[i], i);
+        }
+
+        //Checking if the target is found or not
+        for(int j=0; j<nums.length; j++){
+            int number = nums[j];
+            int remaining = target-number; //could be negative
+            if(numMap.containsKey(remaining)){
+                int index = numMap.get(remaining);
+                if(j==index){
+                    continue;
+                }
+                return new int[]{j, index};
+            }
+        }
+
+        return new int[]{};
+    }
+}
+
+//Brute Force solution
+/*class Solution {
+    public int[] twoSum(int[] nums, int target) {        
+        int[] result = new int[2];
+        for(int i=0; i<=nums.length-1; i++){     //[0,1,2];
+        boolean solved = false;
+            for(int j=i+1; j<=nums.length-1; j++){   //0[1,2]; 1[2]
+                if(nums[i]+nums[j]==target){
+                    result[0] = i;
+                    result[1] = j;
+                    solved = true;
+                    break;
+                }
+            }
+            if(solved == true){
+                break;
+            }
+        }
+        return result;
+    }
+}*/
+
+
+//@First solution is with two loops hence time complexity is O(n2). while for the other, its O(n)
+//@Burte force apporach is with arrays which does not have method like contains hence we need to see the remianing number one by one. But, Maps has contains
+//hence we can diectly find weather we have the number or not
