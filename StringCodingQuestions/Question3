@@ -1,0 +1,30 @@
+Write a Java program to count the total number of occurrences of a given character in a string without using any loop?
+input: 
+String - asdfrsdead
+char - a
+Output:
+2
+--------------------------------------------------------------------------------------------------------------------------------------------
+Solution:
+
+public class Test {
+    public static void main(String[] args)
+    {
+        findFrequency("", 'a');
+        findFrequency("Bread butter and bread",'a' );
+        findFrequency("Java is java again java", 'a');
+        findFrequency("Super Man Bat Man Spider Man", 'a');
+    }
+
+    private static void findFrequency(String input, char character){
+        Integer originalLength = input.length();
+        String modifiedInput = input.replace("a", " ");
+        System.out.println(originalLength-(modifiedInput.length()));
+    }
+}
+
+/*
+1. Its a trick learning question. Replace that char with empty string and then the difference of length with original
+String will give result.
+Complexity: O(1)
+ */
