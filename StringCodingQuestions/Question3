@@ -17,9 +17,13 @@ public class Test {
     }
 
     private static void findFrequency(String input, char character){
-        Integer originalLength = input.length();
-        String modifiedInput = input.replace("a", " ");
-        System.out.println(originalLength-(modifiedInput.length()));
+        if(input.length()>0) {
+            Integer originalLength = input.length();
+            String modifiedInput = input.replace("a", "");
+            System.out.println(originalLength - (modifiedInput.length()));
+        }else{
+            System.out.println("0");
+        }
     }
 }
 
