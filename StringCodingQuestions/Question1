@@ -1,0 +1,51 @@
+Write a Java program to find the duplicate words and their number of occurrences in a string?
+public static void main(String[] args)
+    {
+        duplicateWords("Bread butter and bread");
+ 
+        duplicateWords("Java is java again java");
+ 
+        duplicateWords("Super Man Bat Man Spider Man");
+    }
+    
+Output :
+
+bread : 2
+java : 3
+man : 3
+------------------------------------------------------------------------------------------   
+Solution:
+
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args)
+    {
+        duplicateWords("Bread butter and bread");
+        duplicateWords("Java is java again java");
+        duplicateWords("Super Man Bat Man Spider Man");
+    }
+
+    private static void duplicateWords(String input){
+        Map<String, Integer> wordsAndFrequency = new HashMap<>();
+        StringTokenizer tokenizer = new StringTokenizer(input);
+        while(tokenizer.hasMoreTokens()){
+            String token = tokenizer.nextToken().toLowerCase(Locale.ROOT);
+            wordsAndFrequency.put(token, wordsAndFrequency.get(token) == null ?
+                    1 : wordsAndFrequency.get(token)+1);
+        }
+        for(Map.Entry entry: wordsAndFrequency.entrySet()){
+            if((Integer) entry.getValue()>1){
+                System.out.println(entry.getKey().toString().concat(": ").concat(entry.getValue().toString()));
+            }
+        }
+    }
+}
+
+/*
+1. Skill to tokenize a sentence with delimeter space or anything else
+2. How to print the key and value pair of a map
+3. HashMap get(key) returns null when entry with that key is not present
+4. HashMap keys are case sensitive. So, Bread and bread will be considered two different keys.
+Complexity: O(2n) -> O(n)
+ */
