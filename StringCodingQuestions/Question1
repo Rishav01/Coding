@@ -47,5 +47,6 @@ public class Test {
 2. How to print the key and value pair of a map
 3. HashMap get(key) returns null when entry with that key is not present
 4. HashMap keys are case sensitive. So, Bread and bread will be considered two different keys.
-Complexity: O(2n) -> O(n)
+5. There could be one more way. Use String class split(" ") method which will give String[] words. Then, use this string array words in for each loop for get wordFrequency map
+6. Complexity: O(2n) -> O(n)
  */
