@@ -1,0 +1,36 @@
+Write a Java program to reverse a string?
+input: "asdfrvx"
+output: "xvrfdsa"
+------------------------------------------------------------
+Solution:
+
+public class Test {
+    public static void main(String[] args)
+    {
+        //System.out.println(reverseString());
+        System.out.println(reverseString("asdfrvx"));
+    }
+
+    private static String reverseString(String input){
+        char[] inputCharArray = input.toCharArray();
+        if(input.length()>0) {
+            Integer lastIndex = inputCharArray.length - 1;
+            for (int i = 0; i < lastIndex / 2; i++) {
+                char firstChar = input.charAt(i);
+                inputCharArray[i] = input.charAt(lastIndex);
+                inputCharArray[lastIndex] = firstChar;
+                lastIndex--;
+            }
+            return String.valueOf(inputCharArray);
+        }else{
+            return "Provided String length should be great than zero";
+        }
+    }
+}
+
+/*
+1. We use toCharArray() to convert string into char array and String.valueOf(charArray) from charArray to string.
+2. Convert string to charArray once and back to string while returning the value. I was initially doing the conversion
+in loop while swapping. So, in that wrong approach this conversion was happening as many times as we were swapping. 
+Complexity: O(1)
+ */
