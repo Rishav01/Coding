@@ -1,0 +1,11 @@
+(Source: https://javaconceptoftheday.com/java-interview-programs-on-strings/)
+1. Write a Java program to find the duplicate words and their number of occurrences in a string?
+Below is the input
+    public static void main(String[] args)
+    {
+        duplicateWords("Bread butter and bread");
+ 
+        duplicateWords("Java is java again java");
+ 
+        duplicateWords("Super Man Bat Man Spider Man");
+    }
