@@ -1,0 +1,15 @@
+Write a Java program to check whether two strings are anagram or not?
+A string is called anagram when is has same set of characters (with same frequency) but in different order.
+“School Master – The Classroom” 
+“keep – peek” 
+“Dormitory – Dirty Room"
+Note: string can have spaces which must not be considard.
+---------------------------------------------------------------------------------------------------
+Solution:
+
+
+
+---------------------------------------------------------------------------------------------------
+1. Approach Solution 1: Check length after removing spaces. If length matches then build two maps with alphabet frequency. Then, match is the frequency for each char is same in 
+both the maps. 
+2. Approach Solution 2: We can convert string to char array. THen, sort and check equals. Arrays.sort() method for sorting and Arrays.equals() method for checking equals.
