@@ -1,0 +1,8 @@
+Write a Java program to find duplicate characters in a string?
+Input: "Better Butter"
+Output: t : 4, e : 3, r : 2 and B : 2.
+------------------------------------------------------------------------------
+Solution:
+
+------------------------------------------------------------------------------
+1. Approach: Use string.char().forEach() to iterate over the char array version of string to fill a map with alphabet frequency and then print the entries where value is > 1. 
