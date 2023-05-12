@@ -1,0 +1,33 @@
+Write a Java program to count the number of occurrences of each character in a string?
+Input: "avajava"
+Output: a-4, v-2 and j-1
+-------------------------------------------------------------------------------------------------------
+Solution:
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Test {
+    public static void main(String[] args)
+    {
+        Map<Character, Integer> alphabetCount = alphabetCount("avajava");
+        alphabetCount.entrySet().stream().forEach(entry -> System.out.println(
+                entry.getKey() + "-" + entry.getValue()));
+    }
+
+    private static Map<Character, Integer> alphabetCount(String input){
+        Map<Character, Integer> frequency = new HashMap<>();
+        input.chars().forEach(singleChar ->
+            frequency.put((char) singleChar, frequency.get((char)singleChar)==null ? 1 :
+                    frequency.get((char)singleChar)+1));
+        return frequency;
+    }
+}
+
+/*
+Use Java 8 coding only:
+1. Printing a map should be done through map.entrySet().stream().forEach()
+2. input.char() gives a input stream of ascii value. Since, we wanted char in the map hence i had to print the alphabet
+frequency
+Complexity: O(1)
+ */
