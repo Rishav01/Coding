@@ -1,0 +1,76 @@
+Write a Java program to check whether one string is a rotation of another?
+
+
+---------------------------------------------------------------------------------
+Solution 1:
+public class Test {
+    public static void main(String[] args)
+    {
+        System.out.println(checkRotation("JavaJ2eeStrutsHibernate", "J2eeStrutsHibernateJava"));
+    }
+
+    private static boolean checkRotation(String originalString, String otherString) {
+       return originalString.concat(originalString).contains(otherString);
+    }
+}
+---------------------------------------------------------------------------------
+Solution 2: [not working in all cases]
+public class Test {
+    public static void main(String[] args)
+    {
+        System.out.println(checkRotation("JavaJ2eeStrutsHibernate", "TibernateJavaJ2eeStruts"));
+    }
+
+    private static boolean checkRotation(String originalString, String otherString) {
+        System.out.println("#*");
+        if (originalString.length() == otherString.length()){
+            Integer totalMatched = 0;
+            Integer originalStrIndex = 0;
+            Integer otherStrIndex = 0;
+            Integer lastMatchedFound = null;
+            Integer totalMismatch = 0;
+            while(!(totalMismatch==originalString.length())) {
+                if(totalMatched==originalString.length()){
+                    return true;
+                }
+                if(originalString.charAt(originalStrIndex) == otherString.charAt(otherStrIndex)){
+                    System.out.println("matched: "+originalStrIndex +" "+ otherStrIndex);
+                    lastMatchedFound=otherStrIndex;
+                    totalMatched++;
+                    originalStrIndex++;
+                    if(otherStrIndex==otherString.length()-1){
+                        otherStrIndex=0;
+                    }else{
+                        otherStrIndex++;
+                    }
+                }else{
+                    System.out.println("Unmatched: "+originalStrIndex +" "+ otherStrIndex);
+                    lastMatchedFound=null;
+                    totalMismatch++;
+                    totalMatched=0;
+                    originalStrIndex=0;
+                    if(lastMatchedFound!=null) {
+                        otherStrIndex = lastMatchedFound + 1;
+                    }else{
+                        otherStrIndex++;
+                    }
+                }
+            }
+            return false;
+        }else{
+            System.out.println("#");
+            return false;
+        }
+    }
+}
+-----------------------------------------------------------------------------------
+/*
+Use Java 8 coding only:
+1. Solution 1 Approach: First checking that first char of original matches with char of other. Once matches then we check for the subsequent char. 
+If all matches at last we will get to know the string is rotational but if not then we will start matching the first char of original with the next char to the char of other
+matched last time.
+2. Solution 2 Approach: originalString+originalString.contains(otherString)
+3. In this problem statement, the approach makes the problem quite less difficult hence its important to remember the approach.
+
+Complexity: O(1)
+ */
