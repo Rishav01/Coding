@@ -1,0 +1,19 @@
+How do you convert string to integer and integer to string in Java?
+---------------------------------------------------------------------------------
+Solution:
+public class Test {
+    public static void main(String[] args)
+    {
+        //String to integer
+       String s = "1";
+       Integer i = Integer.parseInt(s);
+       System.out.println(i/1);
+
+       //Integer to String
+        String s1 = String.valueOf(i);
+        System.out.println(s1.equalsIgnoreCase("1"));
+    }
+ }
+ 
+ ----------------------------------------------------------------------------
+1. Use Integer.parseInt(String) for string to integer conversion and String.valueOf() from Integer to string.
