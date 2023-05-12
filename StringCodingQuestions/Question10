@@ -1,0 +1,11 @@
+Write a Java program to reverse a given string with preserving the position of spaces?
+Input: “I Am Not String”
+Output: “g ni rtS toNmAI”
+--------------------------------------------------------------------------------------------------------------
+Solution 1:
+
+
+--------------------------------------------------------------------------------------------------------------
+1. Solution 1 Approach: In a for loop, swap the first and last char of the string. But need to check for space for both the element. If spaces comes then increase or decrease 
+the index accordingly.
+2. Solution 2 Approach: In a for loop, check if the char at index is space, if not then last the char from right most end and if space exist then add space and move the index.
