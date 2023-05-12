@@ -1,0 +1,20 @@
+Write a Java program to remove all white spaces from a string?
+
+----------------------------------------------------
+Solution:
+
+public class Test {
+    public static void main(String[] args)
+    {
+        System.out.println(removeWhileSpace("a a b r f h i"));
+    }
+
+    private static String removeWhileSpace(String input){
+        if(input.length()>0){
+            return input.replace(" ", "");
+        }else{
+            return "Input String length must be greater than zero";
+        }
+
+    }
+}
