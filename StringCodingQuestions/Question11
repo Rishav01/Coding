@@ -1,0 +1,9 @@
+Write a Java program to reverse each word of a given string?
+Input: "Java Concept Of The Day"
+Output: "avaJ tpecnoC fO ehT yaD"
+--------------------------------------------------------------------------------
+Solution:
+
+
+---------------------------------------------------------------------------------
+1. Solution 1 Approach: Tokens from string tokenizer. Then, iterate over each token and then call reverseString method which uses swapping technique.
