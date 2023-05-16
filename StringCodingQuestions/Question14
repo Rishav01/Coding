@@ -1,0 +1,15 @@
+Write a Java program to prove that strings are immutable in Java?
+
+Solution:
+public class Test {
+    public static void main(String[] args)
+    {
+        String s1 = new String("Rishav");
+        String s2 = new String("Rishav");
+        System.out.println(s1==s2); //true
+        s1.concat("Mishra");
+        System.out.println(s1==s2); //false
+    }
+}
+
+1. We have 
