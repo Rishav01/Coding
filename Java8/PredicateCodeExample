@@ -1,4 +1,4 @@
-//Normal predicate interface usage
+//QuickRevise: Normal predicate interface usage
 public class Test {
 
     public static void main(String[] args) {
@@ -8,7 +8,7 @@ public class Test {
 }
 ----------------------------------------------------------------------------------------------------
 
-//Usage of default and() method of Predicate
+//QuickRevise: Usage of default and() method of Predicate
 public class Test {
 
     public static void main(String[] args) {
@@ -23,7 +23,7 @@ package com.ardonagh.workflow.controllers;
 
 import java.util.function.Predicate;
 
-//Usage of default or() method of Predicate
+//QuickRevise: Usage of default or() method of Predicate
 public class Test {
 
     public static void main(String[] args) {
@@ -46,7 +46,7 @@ package com.ardonagh.workflow.controllers;
 
 import java.util.function.Predicate;
 
-//Predicate into a function or as argument
+//QuickRevise: Predicate into a function or as argument
 public class Test {
 
     public void sampleMethod(Predicate<String> stringEqualsRishav){
@@ -66,7 +66,7 @@ package com.ardonagh.workflow.controllers;
 
 import java.util.function.Predicate;
 
-//Showing negate() method
+//QuickRevise: Showing negate() method
 public class Test {
 
 
@@ -94,7 +94,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-//Predicate usage involving collections
+//QuickRevise: Predicate usage involving collections
 @Getter
 @Setter
 public class Test {
@@ -142,7 +142,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-//Predicate isEqual() method example
+//QuickRevise: Predicate isEqual() method example
 @Getter
 @Setter
 public class Test {
