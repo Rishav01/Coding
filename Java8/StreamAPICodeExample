@@ -189,3 +189,23 @@ public class Test {
 
     }
 }
+-----------------------------------------------------------------------------------------------------------
+QuickRevise: Show the usage of flatmap
+
+public static void main(String[] args)
+    {
+        List<List<Integer>> numbers = new ArrayList<>();
+        numbers.add(Arrays.asList(1,2));
+        numbers.add(Arrays.asList(3,4));
+        numbers.add(Arrays.asList(5,6));
+        numbers.add(Arrays.asList(7,8));
+        numbers.add(Arrays.asList(9,10));
+
+        System.out.println(numbers);
+
+        List<Integer> listOfInteger = numbers.stream().flatMap(input -> input.stream().map(integer -> integer+1)).collect(Collectors.toList());
+
+        System.out.println(listOfInteger);
+
+    }
+
