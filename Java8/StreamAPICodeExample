@@ -1,3 +1,5 @@
+QuickRevise: Program to find square of each number in a list.
+--------------------------------------------------------------------------------
 package com.ardonagh.workflow.controllers;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class Test {
     }
 }
 -----------------------------------------------------------------------------------------------------------------------
+QuickRevise: Filter only even number in the list of numbers
 
 package com.ardonagh.workflow.controllers;
 
@@ -45,6 +48,7 @@ public class Test {
     }
 }
 ---------------------------------------------------------------------------------------------------------------------
+QuickRevise: Sort the number in a list
 
 package com.ardonagh.workflow.controllers;
 
@@ -69,6 +73,7 @@ public class Test {
     }
 }
 -----------------------------------------------------------------------------------------------------------------
+QuickRevise: Find only distinct number from the list of numbers
 
 package com.ardonagh.workflow.controllers;
 
@@ -93,6 +98,7 @@ public class Test {
     }
 }
 ------------------------------------------------------------------------------------------------------------------
+QuickRevise: Display distinct numbers from list of numbers
 
 package com.ardonagh.workflow.controllers;
 
@@ -116,6 +122,8 @@ public class Test {
     }
 }
 ---------------------------------------------------------------------------------------------------------------------
+QuickRevise: Find the highest number in the list of the number
+
 package com.ardonagh.workflow.controllers;
 
 import io.swagger.models.auth.In;
