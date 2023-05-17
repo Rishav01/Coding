@@ -19,7 +19,7 @@ public class Test {
 
         //finding square of each number
         List<Integer> squares = numbers.stream().map(number -> number*number).collect(Collectors.toList());
-        System.out.print(squares);
+        squares.stream().forEach(square -> System.out.println(square));
     }
 }
 -----------------------------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ public class Test {
 
         //filtering only even numbers
         List<Integer> evenNumbers = numbers.stream().filter(number -> number%2==0).collect(Collectors.toList());
-        System.out.println(evenNumbers);
+        evenNumbers.stream().forEach(number -> System.out.println(number));
     }
 }
 ---------------------------------------------------------------------------------------------------------------------
@@ -68,8 +68,8 @@ public class Test {
         numbers.add(5);
 
         //Sorting the numbers
-        List<Integer> evenNumbers = numbers.stream().sorted().collect(Collectors.toList());
-        System.out.println(evenNumbers);
+        List<Integer> sortedNumbers = numbers.stream().sorted().collect(Collectors.toList());
+        sortedNumbers.stream().forEach(number -> System.out.println(number));
     }
 }
 -----------------------------------------------------------------------------------------------------------------
@@ -152,6 +152,40 @@ public class Test {
         System.out.println(
                 numbers.stream().reduce(
                         (number1, number2) -> number1>number2? number1 : number2));
+
+    }
+}
+
+----------------------------------------------------------------------------------------------------
+
+QuickRevise: Find the highest number in the list of the number
+
+package com.ardonagh.workflow.controllers;
+
+import io.swagger.models.auth.In;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+//Example of reduce() of stream API
+public class Test {
+
+    public static void main(String args[]){
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(8);
+        numbers.add(3);
+        numbers.add(1);
+        numbers.add(8);
+
+        //using reduce to display the highest number
+        Integer sumOfAll = numbers.stream().reduce((number1, number2) -> {
+           return number1+number2;
+        }).get();
+
+        System.out.println(sumOfAll);
 
     }
 }
