@@ -1,0 +1,47 @@
+Program to validate an IP address (https://www.geeksforgeeks.org/program-to-validate-an-ip-address/)
+According to Wikipedia, IPv4 addresses are canonically represented in dot-decimal notation, which consists of four decimal numbers, 
+each ranging from 0 to 255, separated by dots, e.g., 172.16.254.1
+char ip1[] = "128.0.0.1"; output: true
+    char ip2[] = "125.16.100.1"; output: true
+    char ip3[] = "125.512.100.1"; output: false
+    char ip4[] = "125.512.100.abc"; output: false
+-------------------------------------------------------------------------------------
+public class Test {
+    public static void main(String[] args)
+    {
+        System.out.println(isValidIp("125.512.100.abc"));
+    }
+    
+    private static Boolean isValidIp(String ip) {
+        Integer numberStart = 0;
+        if (ip.length() > 0) {
+            for (int i = 0; i < ip.length(); i++) {
+                if (ip.charAt(i) == '.' || i==ip.length()-1) {
+                    if(i==ip.length()-1){
+                        i++;
+                    }
+                    if (isInRange(ip.substring(numberStart, i)) && i>0) {
+                        numberStart=i+1;
+                        continue;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    //range: 0 to 255
+    private static boolean isInRange(String number){
+        Integer num = Integer.parseInt(number);
+        return (num>=0 && num <=255) ? true : false;
+    }
+}
+--------------------------------------------------------------------------------------------
+1. Solution 1 approach: We checked where the dot is and checked whether digits before that are valid or not by checking with range 0-255. Also, we need to keep track
+of the index from where the number started i.e. after dot. 
+2. We need to check conditions like empty string and dot as first index.
+3. In this apporach there are high changes that we forget the digits after the last dot. Because it will not get inside the last part.
