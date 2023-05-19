@@ -1,0 +1,30 @@
+Implement Atoi (https://www.geeksforgeeks.org/write-your-own-atoi/)
+Covert "29" into integer 29.
+-----------------------------------------------------------------------------------------------------------
+Solution 1: 
+public class Test {
+    public static void main(String[] args)
+    {
+        //factor=10
+        //resultantNumber=9
+        //i=1
+        String number = "21234569";
+        Integer factor = 1;
+        Integer resultantNumber = 0;
+        for(int i=number.length()-1; i>=0; i--){
+            int num = number.charAt(i)-'0';
+            resultantNumber = resultantNumber + factor * num;
+            factor = factor * 10;
+        }
+        System.out.println(resultantNumber);
+    }
+}
+
+Solution 2:
+
+------------------------------------------------------------------------
+1. Approach for Solution: To convert char into int. We can do something like below
+ch=9;
+int a = ch - '0';
+a becomes 9
+
