@@ -1,0 +1,29 @@
+import com.rishav.demoCamunda.Employee;
+
+import java.util.Optional;
+
+public class Test {
+
+    public static void main(String[] args){
+        Optional<Employee> employee = getEmployee();
+
+        System.out.println(getEmployee().orElseThrow(() -> new RuntimeException("PQR")));
+
+        /*if(employee.isPresent()) {
+            System.out.println(getEmployee());
+        }else{
+            throw new RuntimeException("ABC");
+        }*/
+
+        /*if(employee!=null) {
+            System.out.println(employee.getId());
+        }else{
+            throw new RuntimeException("XYZ");
+        }*/
+
+    }
+
+    private static Optional<Employee> getEmployee(){
+        return Optional.empty();
+    }
+}
