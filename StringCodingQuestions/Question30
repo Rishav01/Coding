@@ -1,5 +1,5 @@
 Implement Atoi (https://www.geeksforgeeks.org/write-your-own-atoi/)
-Covert "29" into integer 29.
+Covert String "29" into integer 29.
 -----------------------------------------------------------------------------------------------------------
 Solution 1: 
 public class Test {
@@ -28,3 +28,4 @@ ch=9;
 int a = ch - '0';
 a becomes 9
 
+2. Another way is to use Integer.parseInt(String).
