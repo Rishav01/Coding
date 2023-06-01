@@ -1,0 +1,79 @@
+Find largest word in dictionary by deleting some characters of given string
+
+Giving a dictionary and a string ‘str’, find the longest string in dictionary which can be formed by deleting some characters of the given ‘str’. 
+
+Input : dict = {"ale", "apple", "monkey", "plea"}   
+        str = "abpcplea"  
+Output : apple 
+
+Input  : dict = {"pintu", "geeksfor", "geeksgeeks", 
+                                        " forgeek"} 
+         str = "geeksforgeeks"
+Output : geeksgeeks
+-----------------------------------------------------------------------------------------------------------------------
+Solution:
+
+
+public class Test {
+
+    public static void main(String[] args){
+        List<String> dictionary = new ArrayList<>();
+        dictionary.add("ale");
+        dictionary.add("plea");
+        dictionary.add("apple");
+        dictionary.add("monkey");
+        System.out.println("Largest word: "+largestWord(dictionary, "abpcplea"));
+    }
+
+    private static String largestWord(List<String> dic, String input){
+        //List<String> sortedDic = dic.stream().sorted().collect(Collectors.toList());
+        System.out.println("*");
+        List<String> sortedDic = sortedDictionary(dic);
+        System.out.println(sortedDic);
+        Integer checkWordAt = 0;
+        while(checkWordAt<dic.size()){
+            System.out.println("*");
+            if(checkWord(sortedDic.get(checkWordAt), input)){
+                return sortedDic.get(checkWordAt);
+            }else{
+                checkWordAt++;
+            }
+        }
+        return "";
+    }
+
+    private static Boolean checkWord(String dicWord, String input){
+        Integer dicCount = 0;
+        Integer counter = 0;
+        while(dicCount<dicWord.length() && counter<input.length()){
+            if(dicWord.charAt(dicCount)==input.charAt(counter)){
+                if(dicCount==dicWord.length()-1){
+                    return true;
+                }
+                dicCount++;
+                counter++;
+            }else{
+                counter++;
+            }
+        }
+        return false;
+    }
+
+    private static List<String> sortedDictionary(List<String> dic){
+        for(int i=0; i<dic.size()-1; i++){
+            for(int j=i+1; j<dic.size(); j++){
+                if(dic.get(i).length()<dic.get(j).length()){
+                    String holder = dic.get(i);
+                    dic.remove(i);
+                    dic.add(i, dic.get(j-1));
+                    dic.remove(j);
+                    dic.add(j, holder);
+                }
+            }
+        }
+        return dic;
+    }
+}
+-------------------------------------------------------------------------------------------------------------------------------
+
+1. Approach Solution 1: We sorted the list of words (dic) based on highest length to shortest length. Then, loop through words. Check each word weather that can be created by deleting some char from input. The moment we found one then we can return it as result. For checking the words can be created or not. We matched the first letter of the word with the first of input. If found then moved to 
