@@ -1,0 +1,161 @@
+public class Test {
+
+
+    public static void main(String[] args){
+
+        //Sorting a list of Integer
+        List<Integer> numbers = Arrays.asList(1, 5, 3, 7, 2);
+        numbers.stream().sorted().forEach(number -> System.out.println(number));
+        System.out.println("---Showing that numbers list isn't changed----");
+        numbers.stream().forEach(System.out::println);
+        System.out.println("-------");
+        List<Integer> sortedNumbers = numbers.stream().sorted().collect(Collectors.toList());
+        sortedNumbers.stream().forEach(System.out::println);
+
+        //Sorting a list of Employee
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(2, "Rishav"));
+        employees.add(new Employee(1, "Chirag"));
+        employees.add(new Employee(3, "Hariom"));
+
+        System.out.println("----sort on the basis of id---");
+        List<Employee> sortedEmployees = employees.stream().sorted(Comparator.comparingInt(Employee::getId)).collect(Collectors.toList());
+        sortedEmployees.stream().forEach(employee -> System.out.println(employee.toString()));
+
+        System.out.println("----sort on the basis of names---");
+        employees.stream().sorted(Comparator.comparing(Employee::getName)).forEach(System.out::println);
+
+        System.out.println("---sort on the basis of id and if id is same then by names----");
+        List<Employee> employees2 = new ArrayList<>();
+        employees2.add(new Employee(2, "Rishav"));
+        employees2.add(new Employee(1, "Dharshna"));
+        employees2.add(new Employee(3, "Hariom"));
+        employees2.add(new Employee(1, "Chirag"));
+
+        employees2.stream().sorted((e1, e2) -> {
+            if(e1.getId()==e2.getId()){
+                return e1.getName().compareTo(e2.getName());
+            }else if(e1.getId()>e2.getId()){
+                return 1;
+            }else{
+                return -1;
+            }
+        }).forEach(System.out::println);
+
+        System.out.println("---sort on the basis of name and if names are same then ids----");
+        List<Employee> employees1 = new ArrayList<>();
+        employees1.add(new Employee(2, "Rishav"));
+        employees1.add(new Employee(1, "Chirag"));
+        employees1.add(new Employee(3, "Hariom"));
+        employees1.add(new Employee(4, "Chirag"));
+
+        employees1.stream(). sorted((e1, e2) -> {
+            if(e1.getName().equalsIgnoreCase(e2.getName())){
+                return e1.getId().compareTo(e2.getId());
+            } else {
+                return e1.getName().compareTo(e2.getName());
+            }
+        }).forEach(System.out::println);
+
+
+        System.out.println("---sort on the basis of name and if names are same then ids and ids are same then basis of age----");
+        List<Employee> employees4 = Arrays.asList(new Employee(1, "Rishav", 31),
+                new Employee(2, "Chirag", 30),
+                new Employee(3, "Hariom", 30),
+                new Employee(3, "Hariom", 29));
+
+        employees4.stream().sorted((e1, e2) -> {
+            if(e1.getName().equalsIgnoreCase(e2.getName())){
+                if(e1.getId() == e2.getId()){
+                    return e1.getAge().compareTo(e2.getAge());
+                }else{
+                    return e1.getId().compareTo(e2.getId());
+                }
+            }else{
+                return e1.getName().compareTo(e2.getName());
+            }
+        }).forEach(System.out::println);
+
+
+        System.out.println("---sort on the basis of key (Integer Type) of the map----");
+        Map<Integer, String> departmentMap = new HashMap<>();
+        departmentMap.put(3, "IT");
+        departmentMap.put(4, "Admin");
+        departmentMap.put(1, "HR");
+        departmentMap.put(2, "Finance");
+
+        Map<Integer, String> sortedDepartmentMap = departmentMap.entrySet().stream().sorted(Map.Entry.comparingByKey())
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        sortedDepartmentMap.entrySet().stream().forEach(System.out::println);
+
+        System.out.println("---sort on the basis of Value (String Type) of the map----");
+        Map<Integer, String> sortedDepartmentMapByValue = departmentMap.entrySet().stream().sorted(Map.Entry.comparingByValue())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        sortedDepartmentMapByValue.entrySet().stream().forEach(System.out::println);
+
+
+        System.out.println("---sort on the basis of key (Integer) of the map with Custom Object as value----");
+        Map<Integer, Employee> employeeDepartmentMap = new HashMap<>();
+        employeeDepartmentMap.put(1, new Employee(1, "Rishav"));
+        employeeDepartmentMap.put(3, new Employee(2, "Shyam"));
+        employeeDepartmentMap.put(2, new Employee(3, "Pooja"));
+        employeeDepartmentMap.put(4, new Employee(4, "Mahesh"));
+
+        Map<Integer, Employee> sortedEmployeeDepartmentMap = employeeDepartmentMap.entrySet().stream().sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        sortedEmployeeDepartmentMap.entrySet().stream().forEach(System.out::println);
+
+        System.out.println("---sort on the basis of key (String) of the map with Custom Object as value----");
+        Map<String, Employee> employeeDepartmentMap1 = new HashMap<>();
+        employeeDepartmentMap1.put("IT", new Employee(1, "Rishav"));
+        employeeDepartmentMap1.put("Admin", new Employee(2, "Shyam"));
+        employeeDepartmentMap1.put("HR", new Employee(3, "Pooja"));
+        employeeDepartmentMap1.put("Finance", new Employee(4, "Mahesh"));
+
+        Map<String, Employee> sortedEmployeeDepartmentMap1 = employeeDepartmentMap1.entrySet().stream().sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        sortedEmployeeDepartmentMap1.entrySet().stream().forEach(System.out::println);
+
+        System.out.println("---sort on the basis of Value (Custom object one attribute Integer Type) of the map with Custom Object as value----");
+        Map<String, Employee> employeeDepartmentMap2 = new HashMap<>();
+        employeeDepartmentMap2.put("IT", new Employee(2, "Rishav"));
+        employeeDepartmentMap2.put("Admin", new Employee(4, "Shyam"));
+        employeeDepartmentMap2.put("HR", new Employee(1, "Pooja"));
+        employeeDepartmentMap2.put("Finance", new Employee(3, "Mahesh"));
+
+        Map<String, Employee> sortedEmployeeDepartmentMap2 = employeeDepartmentMap2.entrySet().stream().sorted(Comparator.comparing(e -> e.getValue().getId()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        sortedEmployeeDepartmentMap2.entrySet().stream().forEach(System.out::println);
+
+
+        System.out.println("---sort on the basis of Value (Custom object one attribute String type) of the map with Custom Object as value----");
+        Map<String, Employee> employeeDepartmentMap3 = new HashMap<>();
+        employeeDepartmentMap3.put("IT", new Employee(2, "Rishav"));
+        employeeDepartmentMap3.put("Admin", new Employee(4, "Shyam"));
+        employeeDepartmentMap3.put("HR", new Employee(1, "Pooja"));
+        employeeDepartmentMap3.put("Finance", new Employee(3, "Mahesh"));
+
+        Map<String, Employee> sortedEmployeeDepartmentMap3 = employeeDepartmentMap3.entrySet().stream().sorted(Comparator.comparing(e -> e.getValue().getName()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        sortedEmployeeDepartmentMap3.entrySet().stream().forEach(System.out::println);
+
+        System.out.println("---sort on the basis of Value (Custom object two attributes Integer and String type) of the map with Custom Object as value----");
+        Map<String, Employee> employeeDepartmentMap4 = new HashMap<>();
+        employeeDepartmentMap4.put("IT", new Employee(2, "Rishav"));
+        employeeDepartmentMap4.put("Admin", new Employee(4, "Shyam"));
+        employeeDepartmentMap4.put("HR", new Employee(1, "Pooja"));
+        employeeDepartmentMap4.put("Finance", new Employee(3, "Mahesh"));
+        employeeDepartmentMap4.put("Management", new Employee(1, "Queen"));
+
+        Map<String, Employee> sortedEmployeeDepartmentMap4 = employeeDepartmentMap4.entrySet().stream().sorted((e1, e2) -> {
+            if(e1.getValue().getId() == e2.getValue().getId()){
+                return e1.getValue().getName().compareTo(e2.getValue().getName());
+            }else{
+                return e1.getValue().getId().compareTo(e2.getValue().getId());
+            }
+        })
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        sortedEmployeeDepartmentMap4.entrySet().stream().forEach(System.out::println);
+
+    }
+}
