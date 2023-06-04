@@ -1,0 +1,12 @@
+1. Sample program to encode a string and then decode it back to normal form.
+
+public class Test {
+
+    public static void main(String[] args){
+        String name = "Rishav";
+        String encodedName = Base64.getEncoder().encodeToString(name.getBytes(StandardCharsets.UTF_8));
+        System.out.println(encodedName);
+        String decodedName = new String(Base64.getDecoder().decode(encodedName), StandardCharsets.UTF_8);
+        System.out.println(decodedName);
+    }
+}
