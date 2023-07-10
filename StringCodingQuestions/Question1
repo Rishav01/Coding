@@ -43,10 +43,11 @@ public class Test {
 }
 
 /*
-1. Skill to tokenize a sentence with delimeter space or anything else
-2. How to print the key and value pair of a map
+1. Skill: to tokenize a sentence with delimeter space or anything else.
+2. Skill: How to print the key and value pair of a map
 3. HashMap get(key) returns null when entry with that key is not present
 4. HashMap keys are case sensitive. So, Bread and bread will be considered two different keys.
 5. There could be one more way. Use String class split(" ") method which will give String[] words. Then, use this string array words in for each loop for get wordFrequency map
 6. Complexity: O(2n) -> O(n)
+7. Skill: To tokenize the sentence without StringTokenzier.
  */
