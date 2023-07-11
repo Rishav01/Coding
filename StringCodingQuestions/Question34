@@ -76,4 +76,4 @@ public class Test {
 }
 -------------------------------------------------------------------------------------------------------------------------------
 
-1. Approach Solution 1: We sorted the list of words (dic) based on highest length to shortest length. Then, loop through words. Check each word weather that can be created by deleting some char from input. The moment we found one then we can return it as result. For checking the words can be created or not. We matched the first letter of the word with the first of input. If found then moved to 
+1. Approach Solution 1: We sorted the list of words (dic) based on highest length to shortest length. Then, loop through words. Check each word weather that can be created by deleting some char from input. The moment we found one then we can return it as result. For checking the words can be created or not. We matched the first letter of the word with the first of input. If alphabets are matched then we increase counter of both and if its not a match then we only increase the counter of input. To break the loop we use the inputCounter greater than size of input 
