@@ -1,0 +1,60 @@
+Given a string that consists of only 0s, 1s and 2s, count the number of substrings that have an equal number of 0s, 1s, and 2s.
+
+Input: str = “0102010”
+Output:  2
+Explanation: Substring str[2, 4] = “102” and substring str[4, 6] = “201” has equal number of 0, 1 and 2
+
+Input: str = “102100211”
+Output: 5
+
+-----------------------------------
+
+import java.util.*;
+import java.lang.*;
+
+public class Test{
+
+	public static void main(String[] args){
+		String input = "102100211";
+		Test test = new Test();
+		System.out.println(test.getValidSubstring(input));
+	}	
+
+	private Integer getValidSubstring(String input){
+		Integer substringSize = 3;
+		Integer validStringCount = 0;
+		while(substringSize<=input.length()){
+			Integer start = 0;
+			Integer end = substringSize;
+			while(start<=input.length()-substringSize){		
+				Boolean validString = isValidString(input.substring(start, end));
+				if(validString){
+					validStringCount++;
+				}
+				start++;
+				end++;
+			}
+			substringSize = substringSize + 3;
+		}
+		return validStringCount;
+	}
+
+	private Boolean isValidString(String substring){
+		//@@@check how can we convert String of number to array of integer
+		//System.out.println("*"+substring);
+		Map<Character, Integer> numberFrequency = new HashMap<>();
+		for(int i=0; i<substring.length(); i++){
+			numberFrequency.put(substring.charAt(i), numberFrequency.get(substring.charAt(i))!=null ? numberFrequency.get(substring.charAt(i))+1 : 1);
+		}
+		//System.out.println("#"+numberFrequency);
+		Collection<Integer> values = numberFrequency.values();
+		//System.out.println("!"+values);
+		for(Integer frequency: values){
+			if(frequency!=substring.length()/3){
+				return false;	
+			}
+		}
+		return true;
+	}
+
+}
