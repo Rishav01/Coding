@@ -1,0 +1,56 @@
+Given three strings S, S1, and S2 consisting of N, M, and K characters respectively, the task is to modify the string S by replacing all the substrings S1 with the string S2 in the string S
+
+Input: S = “abababa”, S1 = “aba”, S2 = “a”
+Output: aba
+Explanation:
+Change the substrings S[0, 2] and S[4, 6](= S1) to the string S2(= “a”) modifies the string S to “aba”. Therefore, print “aba”.
+
+Input: S = “geeksforgeeks”, S1 = “eek”, S2 = “ok”
+Output: goksforgoks
+
+----------------------------------------
+
+import java.util.*;
+
+public class Test{
+
+	public static void main(String [] args){
+		String s = "geeksforgeeks";
+		String s1 = "eek";
+		String s2 = "ok";
+		Test test = new Test();
+		System.out.println(test.getModifiedString(s, s1, s2));
+	}
+
+	private String getModifiedString(String s, String s1, String s2){
+		Integer sCounter = 0;
+		Integer s1Counter = 0;
+		Integer s1Length = s1.length();
+		Integer sLength = s.length();
+		List<Integer> matchedIndexes = new ArrayList<>();
+		while(sCounter<=s.length()-1){
+			if(s.charAt(sCounter)==s1.charAt(s1Counter)){
+				if(s1Counter==s1.length()-1){
+					matchedIndexes.add(sCounter-(s1Length-1));
+					s1Counter=-1;
+				}
+				sCounter++;
+				s1Counter++;
+			}else{
+				sCounter++;
+			}			
+		}
+		Integer substringLengthDiff = s1.length()-s2.length();
+		//System.out.println("*"+matchedIndexes);
+		Integer replacementCount = 0;
+		for(int i=0; i<matchedIndexes.size(); i++){
+			Integer matchedIndex = matchedIndexes.get(i) - replacementCount*substringLengthDiff;
+			//System.out.println("#"+matchedIndex);
+			s = s.substring(0, matchedIndex) + s2 + s.substring(matchedIndex+s1Length, s.length());
+			//System.out.println(s);
+			replacementCount++;
+		}
+		return s;
+	}
+    
+}
