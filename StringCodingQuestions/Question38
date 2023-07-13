@@ -1,0 +1,72 @@
+Given two numbers as strings. The numbers may be very large (may not fit in long long int), the task is to find sum of these two numbers.
+
+Input  : str1 = "3333311111111111", 
+         str2 =   "44422222221111"
+Output : 3377733333332222
+
+Input  : str1 = "7777555511111111", 
+         str2 =    "3332222221111"
+Output : 7780887733332222
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+class Solution {
+    String findSum(String X, String Y) {
+        Integer xEnd = X.length()-1;
+        Integer yEnd = Y.length()-1;
+        String addition = "0";
+        Integer carry = 0;
+        String result = "";
+        
+        while(xEnd>=0 || yEnd>=0){
+            
+            if(xEnd>=0 && yEnd>=0){
+                addition = addition(X.substring(xEnd, xEnd+1), Y.substring(yEnd, yEnd+1), carry);
+            }else if(xEnd<0){
+                addition = addition("0", Y.substring(yEnd, yEnd+1), carry);
+            }else{
+                addition = addition(X.substring(xEnd, xEnd+1), "0", carry);
+            }
+            
+            if(addition.length()>1){
+                carry = Integer.valueOf(addition.substring(0, 1));
+                result = addition.substring(1, 2)+result;
+            }else{
+                carry=0;
+                result = addition.substring(0, 1)+result;
+            }
+            
+            xEnd--;
+            yEnd--;
+            
+        }
+        
+        if(carry>0){
+            result = String.valueOf(carry)+result;
+        }
+        
+        return senitizeResult(result);
+    }
+    
+    private String addition(String s1, String s2, Integer carry){
+        return String.valueOf(Integer.valueOf(s1)+Integer.valueOf(s2)+carry);
+    }
+    
+    private String senitizeResult(String result){
+        String newResult = "";
+        if(result.length()>1){
+            for(int i=0; i<result.length()-1; i++){
+                if(result.substring(i, i+1).equalsIgnoreCase("0")){
+                    newResult = result.substring(i+1, result.length());
+                }else{
+                    return result.substring(i, result.length());
+                }
+            }
+        }else{
+            return result;
+        }
+        return newResult;
+    }
+}
