@@ -1,0 +1,60 @@
+Given two binary strings, return their sum (also a binary string).
+
+Input:  a = "11", b = "1"
+Output: "100" 
+------------------------------------------------------------------------
+
+import java.util.*;
+
+public class Test{
+
+	public static void main(String [] args){
+	    String binary1 = "11";
+	    String binary2 = "11";
+	    Test test = new Test();
+	    System.out.println(test.printBinarySum(binary1, binary2));
+	}
+	
+	private String printBinarySum(String binary1, String binary2){
+	    Integer b1End = binary1.length()-1;
+	    Integer b2End = binary2.length()-1;
+	    Integer carry = 0;
+	    String binarySum = "";
+	    //11
+	    //1
+	    while(b1End>=0 || b2End>=0){
+	        String addition = "";
+	        if(b1End>=0 && b2End>=0){
+    	        addition = getAddition(binary1.substring(b1End, b1End+1), binary2.substring(b2End, b2End+1), carry);
+	        }else if(b1End<0){
+	            addition = getAddition("0", binary2.substring(b2End, b2End+1), carry);
+	        }else{
+	            addition = getAddition(binary1.substring(b1End, b1End+1), "0", carry);
+	        }
+	        b1End--;
+	        b2End--;
+	        if(addition.length()==2){
+	            carry = Integer.valueOf(addition.substring(0, 1));
+	            binarySum = addition.substring(1, 2) + binarySum;
+	        }else{
+	            binarySum = addition.substring(0, 1) + binarySum;
+	        }
+	    }
+	    
+	    if(carry>0){
+	        binarySum = "1"+binarySum;
+	    }
+	    
+	    return binarySum;
+	}
+	
+	private String getAddition(String byte1, String byte2, Integer carry){
+        Map<Integer, String> binaryAdditionRule = new HashMap<>();
+        binaryAdditionRule.put(0, "0");
+        binaryAdditionRule.put(1, "1");
+        binaryAdditionRule.put(2, "10");
+        binaryAdditionRule.put(3, "11");
+        
+        return binaryAdditionRule.get(Integer.valueOf(byte1)+Integer.valueOf(byte2)+carry);
+	}
+}
