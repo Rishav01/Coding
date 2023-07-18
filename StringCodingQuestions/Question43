@@ -1,0 +1,64 @@
+Given a string, find the minimum number of characters to be inserted to convert it to palindrome.
+For Example:
+ab: Number of insertions required is 1. bab or aba
+aa: Number of insertions required is 0. aa
+abcd: Number of insertions required is 3. dcbabcd
+
+Example 1:
+
+Input: str = "abcd"
+Output: 3
+Explanation: Inserted character marked
+with bold characters in dcbabcd
+Example 2:
+
+Input: str = "aa"
+Output: 0
+Explanation:"aa" is already a palindrome.
+
+
+
+
+--------------------------------------------------------------------------------------------
+
+class Solution{
+    static int countMin(String str)
+    {
+        if(isPalindrome(str)){
+            return 0;
+        }
+        Integer largestPalindromeLength = findLargestpalindromeLength(str);
+        return (str.length() - largestPalindromeLength);        
+    }
+    
+    //abcbae
+    static private Integer findLargestpalindromeLength(String str){
+        String largestPalindrome = "";
+        for(int i=0; i<str.length(); i++){
+            for(int j=i; j<str.length(); j++){
+                String currentSubstring = str.substring(i, j+1);
+                if(isPalindrome(currentSubstring)){
+                    if(currentSubstring.length()>largestPalindrome.length()){
+                        largestPalindrome = currentSubstring;
+                    }
+                }
+            }
+        }
+        return largestPalindrome.length();
+    }
+    
+    static private Boolean isPalindrome(String str){
+        Integer start = 0;
+        Integer end = str.length()-1;
+        
+        while(start<end){
+            if(str.charAt(start)==str.charAt(end)){
+                start++;
+                end--;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+}
