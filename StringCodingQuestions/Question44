@@ -1,0 +1,89 @@
+Given a binary string S . Perform R iterations on string S, where in each iteration 0 becomes 01 and 1 becomes 10. Find the Nth character (considering 0 based indexing) of the string after performing these R iterations. (See Examples for better understanding)
+
+Input:
+S = 101
+R = 2 
+N = 3
+Output:
+1
+Explanation : 
+After 1st iteration S becomes 100110.
+After 2nd iteration, S = 100101101001
+Now, we can clearly see that the character
+at 3rd index is 1, and so the output.
+Example
+
+Input:
+S = 11
+R = 1 
+N = 3
+Output:
+0
+Explanation: 
+After 1st iteration S becomes 1010.
+Now, we can clearly see that the character
+at 3rd index is 0, and so the output.
+
+-------------------------------------------------------------------------------------------
+
+class Solution
+{
+    
+    public char nthCharacter(String S, int R, int N)
+    {
+        Integer oneCharLength = (int) Math.pow(2, R);
+        Integer mainCharacterIndex=0;
+        if(N%oneCharLength==0){
+            mainCharacterIndex = ((N+1)/oneCharLength)-1;
+        }else{
+            mainCharacterIndex = ((N+1)/oneCharLength);
+        }
+        Integer newN = Math.abs(N-(oneCharLength*mainCharacterIndex));
+        StringBuilder finalString = getFinalString(new StringBuilder(S.substring(mainCharacterIndex, mainCharacterIndex+1)), R);
+        return finalString.charAt(newN);
+    }
+
+    //0111
+    private StringBuilder getFinalString(StringBuilder builderS, Integer R){
+        Integer transformation = 0;
+        while(transformation<R){
+            StringBuilder buildertemp = new StringBuilder("");
+            for(int i=0; i<builderS.length(); i++){
+                if(builderS.charAt(i)=='0'){
+                    buildertemp = buildertemp.append("01");
+                }else{
+                    buildertemp = buildertemp.append("10");
+                }
+            }
+            builderS = buildertemp;
+            transformation++;
+        }
+        return builderS;
+    }
+}
+
+
+----------------------------------------------------------------------------------------------------------------
+
+Notes Question 44:
+Speaking on approach:
+1. Our normal approach was. If 0111 given string, then find out the next string and then keep finding it till the value of R. Then, find out if 0 or 1 at Nth
+character.
+2. But when scale goes to R=16, then size of S will become 262144 which is a big number. So, when the scale gets to high we better find a smarter approach.
+3. We only want to return Nth character and do not have to do anything with other character. So, we need to find which specific character of base string (0111)
+will result into the Nth character and we will only perform R transaformations for that character. Then, will find the right character.
+For example, inputs are S=0111, R=16 and N=37963. So, In R transformations each char of S will result into 65536 chars in final string. So, its like 65536
+for 0, 1 , 1 and 1 of S. We need to find the 37963th char which will clearly be coming for first char of S (which is 0). So, we will only find 16 transformation
+of first char of S and thrn return 37963th index char.
+
+Other Learning:
+1. If we do like below. Then, in second line, S on right side will be taken from line 1 only. After line 2, S will gets its new value. So, dont be in doubt.
+	S = "100";
+	S = S.substring(0, index) + "01" + S.substring(index+1, S.length());
+
+2. Integer number = Math.pow(2, 3) is equals to 2 to the power 3 which is 8. It return double value and hence we need to convert to Integer.
+3. For large scale of String, use Stringbuilder.
+4. Math.abs() is used to find the absolute different. If diff is negative then it only gives the diff.
+5. Do not rely to much on x/y. Actually, 1/2 gives 0, 2/2 gives 1 and 3/2 also gives 1. So, in some scenarios it does not fits well.
+6. Be very careful about expressions in Java. X+1/Y is a expression where in java 1/Y will happen first and then X + 1 divided Y will be done. We do not 
+expect this to happen in math. So, we need to make good use of (). Change the expression to (X+1)/Y. Now, X+1 will be calculated first to be divided by Y.
