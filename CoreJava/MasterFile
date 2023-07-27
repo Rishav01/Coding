@@ -1,3 +1,6 @@
+|Basics|
+1. Object cloning. Deep and shallow cloning. 
+
 |String|
 1. How can you create immutable class?
 2. How can you create immutable class? With map data member.
@@ -14,7 +17,6 @@ No program yet
 No program yet
 
 |Misc Topics|
-Cloning
 
 |Java Collection|
 1. How can we iterate over map keys?
