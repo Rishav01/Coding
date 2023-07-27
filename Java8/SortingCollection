@@ -1,3 +1,16 @@
+1. Part of first program:
+    How to sort a list of Integer/String? Also, show when the number dont change.
+    How to sort a list of Employee? First sort with id and then sort with name.
+    How to sort a list of Employee? First sort with id and if Id is same then sort with name.
+    How to sort a list of Employee? First sort with id and if Id is same then sort with name. If name is same then sort with age.
+    How to sort a map with its key of type Integer?
+    How to sort a map with its value of type String?
+How to sort a map with its value of type Employee?
+2. How to sort a list of String in z to a order.
+
+
+
+
 public class Test {
 
 
