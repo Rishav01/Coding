@@ -1,5 +1,6 @@
 QuickRevise: Program to find square of each number in a list.
 --------------------------------------------------------------------------------
+
 package com.ardonagh.workflow.controllers;
 
 import java.util.ArrayList;
@@ -92,7 +93,7 @@ public class Test {
         numbers.add(1);
         numbers.add(8);
 
-        //finding the distinct numbers
+            //finding the distinct numbers
         List<Integer> evenNumbers = numbers.stream().distinct().collect(Collectors.toList());
         System.out.println(evenNumbers);
     }
@@ -158,7 +159,8 @@ public class Test {
 
 ----------------------------------------------------------------------------------------------------
 
-QuickRevise: Find the highest number in the list of the number
+QuickRevise: Find the sum in the list of the number.
+(Return statement and semocolon comes when {} are used)
 
 package com.ardonagh.workflow.controllers;
 
@@ -224,3 +226,17 @@ QuickRevise: Show the usage of Peek() method
         List<Integer> filerNumber = numbers.stream().filter(number -> number%2==0).peek(number -> System.out.println(number)).collect(Collectors.toList());
 
     }
+---------------------------------------------------------------------------------------------------------
+QuickRevise: Print the count of empty string in a list of Strings.
+
+public class Test {
+
+    public static void main(String args[]){
+        List<String> strList = Arrays.asList("abc", "", "bcd", "", "defg", "jk");
+        System.out.println(strList.stream().filter(input -> input.length()==0).count());
+    }
+}
+----------------------------------------------------------------------------------------------------------
+
+
+QuickRevise: Sort the number highest to lowest order.
