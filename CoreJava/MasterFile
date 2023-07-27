@@ -1,6 +1,8 @@
 |String|
 1. How can you create immutable class?
-2. Practice StringTokenizer and iteraton over tokens.
+2. How can you create immutable class? With map data member.
+3. How can you create immutable class? With Custom data member.
+4. Practice StringTokenizer and iteraton over tokens.
 
 |Garbage Collection|
 No program yet
@@ -15,5 +17,266 @@ No program yet
 Cloning
 
 |Java Collection|
-Map Iteration
+1. How can we iterate over map keys?
+2. How can we iterate over map values?
 Map Sorting all combination
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+|String|
+1. How can you create immutable class? With String and int Data member.
+
+//final class to avoid sub class
+public final class Employee {
+
+    //private member to avoid direct access outside
+    //final member to avoid change once created
+    private final int id;
+    private final String name;
+
+    public Employee(int id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public String getName(){
+        return name;
+    //no setter provided
+}
+
+public class Client {
+    }
+
+    public static void main(String args[]){
+        Employee e = new Employee(1, "Rishav");
+        System.out.println(e.getId() + " " + e.getName());
+        //no way to change state of object as members are private and no setter is given. Also, no mutable member.
+    }
+}
+
+2. How can you create immutable class? With map data member.
+import java.util.HashMap;
+import java.util.Map;
+
+public final class Employee {
+
+    private final int id;
+    private final String name;
+    private final Map<String, String> metadata;
+
+    public Employee(int id, String name, Map<String, String> metadata){
+        this.id = id;
+        this.name = name;
+        //this.metadata = metadata;
+        Map<String, String> tempData = new HashMap<>();
+        for (Map.Entry<String, String> entry : metadata.entrySet()) {
+            tempData.put(entry.getKey(), entry.getValue());
+        }
+        this.metadata = tempData;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public Map getMetaData(){
+        //return metadata;
+        Map<String, String> tempData = new HashMap<>();
+        for (Map.Entry<String, String> entry : metadata.entrySet()) {
+            tempData.put(entry.getKey(), entry.getValue());
+        }
+        return tempData;
+    }
+}
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Client {
+
+    public static void main(String args[]){
+        Map<String, String> metaData = new HashMap<>();
+        metaData.put("a","a");
+        metaData.put("b","b");
+        Employee employee = new Employee(1, "Rishav", metaData);
+        System.out.println(employee.getMetaData());
+        metaData.put("c", "c");
+        System.out.println(employee.getMetaData());
+    }
+}
+
+3. How can you create immutable class? With Custom data member.
+
+public class Address {
+
+    int houseNo;
+    String city;
+
+    public int getHouseNo() {
+        return houseNo;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setHouseNo(int houseNo) {
+        this.houseNo = houseNo;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+}
+
+import java.util.HashMap;
+import java.util.Map;
+
+public final class Employee {
+
+    private final int id;
+    private final String name;
+    private final Map<String, String> metadata;
+    private final Address address;
+
+    public Employee(int id, String name, Map<String, String> metadata, Address address){
+        this.id = id;
+        this.name = name;
+        //this.metadata = metadata;
+        Map<String, String> tempData = new HashMap<>();
+        for (Map.Entry<String, String> entry : metadata.entrySet()) {
+            tempData.put(entry.getKey(), entry.getValue());
+        }
+        this.metadata = tempData;
+
+        Address tempAdd = new Address();
+        tempAdd.setHouseNo(address.houseNo);
+        tempAdd.setCity(address.city);
+        this.address = tempAdd;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public Map getMetaData(){
+        //return metadata;
+        Map<String, String> tempData = new HashMap<>();
+        for (Map.Entry<String, String> entry : metadata.entrySet()) {
+            tempData.put(entry.getKey(), entry.getValue());
+        }
+        return tempData;
+    }
+
+    public Address getAddress(){
+        Address tempAdd = new Address();
+        tempAdd.setHouseNo(address.houseNo);
+        tempAdd.setCity(address.city);
+        return tempAdd;
+    }
+}
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Client {
+
+    public static void main(String args[]){
+        Map<String, String> metaData = new HashMap<>();
+        metaData.put("a","a");
+        metaData.put("b","b");
+        Address address = new Address();
+        address.setHouseNo(33);
+        address.setCity("Gwalior");
+        Employee employee = new Employee(1, "Rishav", metaData, address);
+        System.out.println(employee.getMetaData()+ " "+employee.getAddress().getCity());
+        metaData.put("c", "c");
+        address.setCity("Bhopal");
+        System.out.println(employee.getMetaData()+ " "+employee.getAddress().getCity());
+    }
+}
+
+4. Practice StringTokenizer and iteraton over tokens.
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+
+public class StringTokenizerDemo {
+
+    public static void main(String[] args){
+        String s = "my-name-rishav-mishra";
+        List<String> tokens = new ArrayList<>();
+        StringTokenizer stringTokenizer = new StringTokenizer(s, "-");
+        while(stringTokenizer.hasMoreTokens()){
+            tokens.add(stringTokenizer.nextToken());
+        }
+        tokens.stream().forEach(System.out::println);
+    }
+}
+
+|Garbage Collection|
+No program yet
+
+|Exception Handling|
+1. How can we create custom exception?
+
+public class InvalidAgeException extends RuntimeException{
+    public InvalidAgeException(String message){
+        super(message);
+    }
+}
+
+public class Client {
+    public static void main(String args[]){
+        Integer age = 17;
+        if(age>18){
+            System.out.println(age);
+        }else{
+            throw new InvalidAgeException("Age is invalid");
+        }
+    }
+}
+
+|MultiThreading|
+No program yet
+
+|Misc Topics|
+Cloning
+
+|Java Collection|
+1. How can we iterate over map keys? How can we iterate over map values? How can we iterate over map entries?
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapIteration {
+
+    public static void main(String args[]){
+        Map<Integer, String> students = new HashMap<>();
+        students.put(1, "Rishav");
+        students.put(2, "Akshay");
+        students.put(3, "Mudit");
+        students.put(4, "Mohit");
+
+        students.keySet().stream().forEach(System.out::println);
+        students.values().stream().forEach(System.out::println);
+        students.entrySet().stream().forEach(System.out::println);
+
+    }
+}
+
+2. Map Sorting all combination
