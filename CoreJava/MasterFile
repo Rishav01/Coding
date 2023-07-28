@@ -3,7 +3,7 @@
 2. Object deep cloning. 
 3. Array program: GeeksForGeeks top 50 Easy 1st
 4. Array program: GeeksForGeeks top 50 medium 1st
-4. two dimensional array program
+5. two dimensional array program. Find rows, columns, sum of all the numbers.
 
 |String|
 1. How can you create immutable class?
@@ -218,6 +218,28 @@ public class Program1 {
             }
         }
         return rotatedNumbers;
+    }
+}
+
+5. two dimensional array program. Find rows, columns, sum of all the numbers.
+
+public class Program1 {
+
+    public static void main(String args[]){
+        int[][] numbers = {{5, 10, 20}, {1,2,3}};
+        System.out.println(sumOfAll(numbers));
+    }
+
+    private static int sumOfAll(int[][] numbers){
+        int row = numbers.length;
+        int column = numbers[0].length;
+        int sum = 0;
+        for(int i =0; i<numbers.length; i++){ //0,1
+            for(int j=0; j<numbers[0].length; j++){ //0,1,2
+                sum = sum + numbers[i][j];
+            }
+        }
+        return sum;
     }
 }
 
