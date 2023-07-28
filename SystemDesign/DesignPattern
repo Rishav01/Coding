@@ -1,62 +1,53 @@
-|Factory Design Pattern|
+1. Show example of 
 
 1. Show exmaple of Factory Design Pattern
 
-package com.rishav.demoCamunda.servicetask.factoryexample;
+public abstract class Employee {
+    int id;
+    String name;
 
-public abstract class Shape {
-
-    Integer area;
-
-    public abstract Integer calculateArea();
+    public abstract int getRate();
 }
 
-package com.rishav.demoCamunda.servicetask.factoryexample;
+public class ITProfessional extends Employee{
 
-public class Circle extends Shape{
+    int rate = 100;
 
     @Override
-    public Integer calculateArea() {
-        System.out.println("calculated Area");
-        return 1;
+    public int getRate() {
+        return rate;
     }
 }
 
+public class FinanceProfessional extends Employee{
 
-package com.rishav.demoCamunda.servicetask.factoryexample;
-
-public class Rectangle extends Shape{
+    int rate = 120;
 
     @Override
-    public Integer calculateArea() {
-        System.out.println("Calculated area of Rectangle.");
-        return 2;
+    public int getRate() {
+        return rate;
     }
 }
 
-package com.rishav.demoCamunda.servicetask.factoryexample;
+public class EmployeeFactory {
 
-public class ShapeFactory {
-
-    public static Shape getShape(String type){
-        if(type.equalsIgnoreCase("circle")){
-            return new Circle();
-        }else if(type.equalsIgnoreCase("Rectangle")){
-            return new Rectangle();
-        }else{
-            throw new RuntimeException("Shape type provided is not valid");
+    public static Employee getEmployee(String type){
+        if(type.equalsIgnoreCase("IT")){
+            return new ITProfessional();
+        }else if(type.equalsIgnoreCase("finance")){
+            return new FinanceProfessional();
         }
+        return null;
     }
 }
-
-
-package com.rishav.demoCamunda.servicetask.factoryexample;
 
 public class Client {
 
     public static void main(String args[]){
-        Shape shape = ShapeFactory.getShape("Circle");
-        System.out.println(shape.calculateArea());
+        Employee e = EmployeeFactory.getEmployee("IT");
+        System.out.println(e.getRate());
+        Employee e1 = EmployeeFactory.getEmployee("finance");
+        System.out.println(e1.getRate());
     }
 }
 
