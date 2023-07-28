@@ -1,5 +1,6 @@
 |Basics|
-1. Object cloning. Deep and shallow cloning. 
+1. Object shallow cloning. 
+2. Object deep cloning. 
 2. Single dimension array program
 3. two dimensional array program
 
@@ -25,6 +26,154 @@ No program yet
 2. How can we iterate over map values?
 Map Sorting all combination
 -------------------------------------------------------------------------------------------------------------------------------------------------
+|Basics|
+1. Object shallow cloning. 
+
+public class Employee implements Cloneable{
+    public Integer id;
+    public String name;
+    public Address address;
+
+    public Employee(Integer id, String name, Address address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        //Employee e = (Employee) super.clone();
+        //e.address = (Address) address.clone();
+        return super.clone();
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address=" + address +
+                '}';
+    }
+}
+
+public class Address implements Cloneable{
+
+    Integer houseNo;
+    String city;
+
+    public Address(Integer houseNo, String city) {
+        this.houseNo = houseNo;
+        this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "houseNo=" + houseNo +
+                ", city='" + city + '\'' +
+                '}';
+    }
+
+    /*@Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }*/
+}
+
+public class client {
+
+    public static void main(String args[]){
+        Address address1 = new Address(1, "Gwalior");
+        Employee e1 = new Employee(1, "Rishav", address1);
+        System.out.println(e1.toString());
+
+        try {
+            Employee e2 = (Employee) e1.clone();
+            e2.name = "Mishra";
+            e2.address.city = "Bhopal";
+            System.out.println(e1.toString());
+        }catch(CloneNotSupportedException ex){
+            System.out.println("Clone not supported");
+        }
+    }
+}
+
+2. Object Deep Cloning
+
+public class Address implements Cloneable{
+
+    Integer houseNo;
+    String city;
+
+    public Address(Integer houseNo, String city) {
+        this.houseNo = houseNo;
+        this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "houseNo=" + houseNo +
+                ", city='" + city + '\'' +
+                '}';
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+
+public class Employee implements Cloneable{
+    public Integer id;
+    public String name;
+    public Address address;
+
+    public Employee(Integer id, String name, Address address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Employee e = (Employee) super.clone();
+        e.address = (Address) address.clone();
+        return e;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address=" + address +
+                '}';
+    }
+}
+
+public class client {
+
+    public static void main(String args[]){
+        Address address1 = new Address(1, "Gwalior");
+        Employee e1 = new Employee(1, "Rishav", address1);
+        System.out.println(e1.toString());
+
+        try {
+            Employee e2 = (Employee) e1.clone();
+            e2.name = "Mishra";
+            e2.address.city = "Bhopal";
+            System.out.println(e1.toString());
+        }catch(CloneNotSupportedException ex){
+            System.out.println("Clone not supported");
+        }
+    }
+}
+
+=================================================================================================================================
+
+
 
 |String|
 1. How can you create immutable class? With String and int Data member.
