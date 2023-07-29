@@ -14,6 +14,7 @@ public interface Car {
 }
 
 
+
 public class HondaCar implements Car{
 
     public void engine(){
@@ -23,8 +24,12 @@ public class HondaCar implements Car{
     public void breaks(){
         System.out.println("I have honda break");
     }
-}
 
+    public void hondaHorn(){
+        Car.stering(); //By car name only
+        horn(); //directly
+    }
+}
 
 public class Client {
 
