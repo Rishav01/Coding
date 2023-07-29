@@ -2,10 +2,14 @@
     How to sort a list of Integer/String? Also, show when the number dont change.
     How to sort a list of Employee? First sort with id and then sort with name.
     How to sort a list of Employee? First sort with id and if Id is same then sort with name.
+    How to sort a list of Employee? First sort with name and if name is same then sort with id
     How to sort a list of Employee? First sort with id and if Id is same then sort with name. If name is same then sort with age.
     How to sort a map with its key of type Integer?
     How to sort a map with its value of type String?
-How to sort a map with its value of type Employee?
+    How to sort a map with its key of type Integer? First with key and if key is same then by value.
+    How to sort a map with its value of type String? First with value and if value is same then by key.
+    How to sort a map with its value of type Employee? Different Variations like above.
+
 2. How to sort a list of String in z to a order.
 
 
@@ -54,6 +58,7 @@ public class Test {
                 return -1;
             }
         }).forEach(System.out::println);
+        
 
         System.out.println("---sort on the basis of name and if names are same then ids----");
         List<Employee> employees1 = new ArrayList<>();
@@ -105,6 +110,8 @@ public class Test {
         Map<Integer, String> sortedDepartmentMapByValue = departmentMap.entrySet().stream().sorted(Map.Entry.comparingByValue())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
         sortedDepartmentMapByValue.entrySet().stream().forEach(System.out::println);
+
+        System.out.println("---sort on the basis of Value (String Type) of the map and if value is same then by Integer type key----");
 
 
         System.out.println("---sort on the basis of key (Integer) of the map with Custom Object as value----");
