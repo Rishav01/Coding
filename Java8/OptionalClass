@@ -1,3 +1,8 @@
+$$$ 1. Practice replacing normal null check with Optional class.
+$$$ 2. Practice sending empty object of class.
+$$$ 3. Practice orElse
+$$$ 4. practice orElseThrow.
+
 import com.rishav.demoCamunda.Employee;
 
 import java.util.Optional;
