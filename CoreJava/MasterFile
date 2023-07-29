@@ -1,14 +1,14 @@
 |Basics|
 1. Object shallow cloning. 
-2. Object deep cloning. 
+$$$ 2. Object deep cloning. 
 3. Array program: GeeksForGeeks top 50 Easy 1st
 4. Array program: GeeksForGeeks top 50 medium 1st
 5. two dimensional array program. Find rows, columns, sum of all the numbers.
 
 |String|
 1. How can you create immutable class?
-2. How can you create immutable class? With map data member.
-3. How can you create immutable class? With Custom data member.
+$$$ 2. How can you create immutable class? With map data member.
+$$$ 3. How can you create immutable class? With Custom data member.
 4. Practice StringTokenizer and iteraton over tokens.
 
 |Garbage Collection|
