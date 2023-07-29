@@ -1,14 +1,41 @@
-package com.ardonagh.workflow.controllers;
+public interface Car {
 
-@java.lang.FunctionalInterface
-public interface FunctionalInterface<T> {
-    public T reverseString(T input);
-
-    default void defaultMethod(){
-        System.out.println("defaultMethodInterface");
+    public default void engine(){
+        System.out.println("I have engine");
     }
 
-    static void staticMethod(){
-        System.out.println("staticMethodInterface");
+    public default void horn(){
+        System.out.println("I have horn");
+    }
+
+    public static void stering(){
+        System.out.println("I have stering");
+    }
+}
+
+
+public class HondaCar implements Car{
+
+    public void engine(){
+        System.out.println("I have honda engine");
+    }
+
+    public void breaks(){
+        System.out.println("I have honda break");
+    }
+}
+
+
+public class Client {
+
+    public static void main(String args[]) throws CloneNotSupportedException{
+        HondaCar hondaCar = new HondaCar();
+        //HondaCar.stering(); gives issues
+        //hondaCar.stering(); gives issues
+        Car.stering();
+        hondaCar.horn();
+
+        hondaCar.engine();
+        hondaCar.breaks();
     }
 }
