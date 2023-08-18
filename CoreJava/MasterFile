@@ -18,7 +18,8 @@ No program yet
 1. How can we create custom exception?
 
 |MultiThreading|
-No program yet
+1. How to create thread using Thread class?
+2. How to create thread using Runnable interface?
 
 |Misc Topics|
 
@@ -476,9 +477,40 @@ public class Client {
     }
 }
 
+---------------------------------------------------------------------------------------------------------------------------
 |MultiThreading|
-No program yet
+1. How to create thread using Thread class?
 
+public class AppThread extends Thread{
+
+    public static void main(String args[]){
+        AppThread appThread = new AppThread();
+        appThread.start();
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Rishav");
+    }
+}
+
+2. How to create thread using Runnable interface?
+
+public class AppThread implements Runnable{
+
+    public static void main(String args[]){
+        AppThread appThread = new AppThread();
+        Thread customThread1 = new Thread(appThread);
+        customThread1.start();
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Rishav");
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------------
 |Misc Topics|
 Cloning
 
