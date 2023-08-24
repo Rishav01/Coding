@@ -4,12 +4,14 @@ $$$ 2. Object deep cloning.
 3. Array program: GeeksForGeeks top 50 Easy 1st
 4. Array program: GeeksForGeeks top 50 medium 1st
 5. two dimensional array program. Find rows, columns, sum of all the numbers.
+$$$6. Practice Switch case coing program.
 
 |String|
 1. How can you create immutable class?
 $$$ 2. How can you create immutable class? With map data member.
 $$$ 3. How can you create immutable class? With Custom data member.
 4. Practice StringTokenizer and iteraton over tokens.
+5. Practice using stringBuilder and StringBuffer. (create SB, add in SB, print SB, String conversion)
 
 |Garbage Collection|
 No program yet
@@ -451,6 +453,35 @@ public class StringTokenizerDemo {
             tokens.add(stringTokenizer.nextToken());
         }
         tokens.stream().forEach(System.out::println);
+    }
+}
+
+5. Practice using stringBuilder and StringBuffer. (create SB, add in SB, print SB, String conversion)
+
+public class Client {
+
+    public static void main(String [] args){
+
+        //creation of SB
+        StringBuilder sb = new StringBuilder("");
+
+        //does not give null pointer
+        System.out.println("*"+sb.toString());
+
+        sb.append("rishav");
+
+        //Printing content of SB
+        System.out.println(sb.toString());
+
+        sb.append("mishra");
+
+        System.out.println(sb.toString());
+
+        //convert String Buffer to String and vice versa
+        String str = sb.toString();
+        StringBuilder sb1 = new StringBuilder("str");
+
+        
     }
 }
 
