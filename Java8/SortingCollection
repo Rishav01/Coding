@@ -1,10 +1,10 @@
 1. Part of first program:
-    How to sort a list of Integer/String? Also, show when the number dont change.
+    How to sort a list of Integer/String? Also, show when the number dont change. In Asc and desc order.
     How to sort a list of Employee? First sort with id and then sort with name.
     How to sort a list of Employee? First sort with id and if Id is same then sort with name.
     How to sort a list of Employee? First sort with name and if name is same then sort with id
     How to sort a list of Employee? First sort with id and if Id is same then sort with name. If name is same then sort with age.
-    How to sort a map with its key of type Integer?
+    $$$(collect wale side ka code kaise?)How to sort a map with its key of type Integer?
     How to sort a map with its value of type String?
     How to sort a map with its key of type Integer? First with key and if key is same then by value.
     How to sort a map with its value of type String? First with value and if value is same then by key.
@@ -21,13 +21,12 @@ public class Test {
     public static void main(String[] args){
 
         //Sorting a list of Integer
-        List<Integer> numbers = Arrays.asList(1, 5, 3, 7, 2);
-        numbers.stream().sorted().forEach(number -> System.out.println(number));
-        System.out.println("---Showing that numbers list isn't changed----");
-        numbers.stream().forEach(System.out::println);
-        System.out.println("-------");
+        //asc order
         List<Integer> sortedNumbers = numbers.stream().sorted().collect(Collectors.toList());
+        //Desc order
+        List<Integer> sortedNumbers1 = numbers.stream().sorted((i1, i2) -> i2.compareTo(i1)).collect(Collectors.toList());
         sortedNumbers.stream().forEach(System.out::println);
+        sortedNumbers1.stream().forEach(System.out::println);
 
         //Sorting a list of Employee
         List<Employee> employees = new ArrayList<>();
