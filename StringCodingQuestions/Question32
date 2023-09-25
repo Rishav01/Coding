@@ -41,7 +41,8 @@ public class Test {
     }
 }
 --------------------------------------------------------------------------------------------
-1. Solution 1 approach: We checked where the dot is and checked whether digits before that are valid or not by checking with range 0-255. Also, we need to keep track
-of the index from where the number started i.e. after dot. 
-2. We need to check conditions like empty string and dot as first index.
-3. In this apporach there are high changes that we forget the digits after the last dot. Because it will not get inside the last part.
+1. Solution 1 approach: 
+    a. We will traverse the pointer from 0 index to end index. 
+    b. Whereever we find as '.', we will evaluated the number to be in range of 0 to 255. So, we also need to take care of starting point. Initially it will be 0 and from finding first dot onwards, it will be currentIndex+1 when a dot is found. 
+    c. We need to put a check on last index of the string, so that we will be able to evaluated the last number after the last dot which is likely that we miss.
+2. Edge Case: We need to check conditions like empty string and dot as first index.
