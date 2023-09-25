@@ -39,6 +39,10 @@ public class Test {
 }
 
 ------------------------------------------------------------------------------------------------------
-1. Solutoin 1 approach: 
-2. Need to understand that String.substring(start, end). It includes start and exclude end. But if length is 6 of the string then we can keep end =6 to include the char at
-index 5.
+1. Solutoin 1 approach: (Ek string to k size k char mai group karna hai to ye check kar lete hai kitne group banege. Jo perfect number group na bane usko hum sabse age daal denge. Aisa karna hai.)
+    a. Replace - from empty string first to normalize the input string. 
+    a1. First find the length of the first group (X) of chars as the reminder of length%k and number of set of k chars.
+    b. If length%k is non zero then we have an imperfect char group (Y length) that we need first in the output string. input.subString(0, Y) + "-".
+    c. Then we need to use loop to add other perfect char set (of length k) in the output string. opStr = opStr + inpStr(opStr.length(), opStr.length()+k+DashAdded++) + "-". Here, dashadded will be counter.
+
+2. Tip- Does String.subString(x, y) has y included or excluded? Also, y = str.legnth() gives error? Also, charAt(str.legnth()) gives errpr? Need to understand that String.substring(start, end). It includes start and exclude end. But if length is 6 of the string then we can keep end =6 to include the char at index 5.
