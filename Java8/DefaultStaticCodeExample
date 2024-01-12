@@ -1,3 +1,10 @@
+1. Create interface with static and default methods, call static and default method in implementing class, override default method in implementing class. 
+Call interface and class methods in client class.
+
+
+
+===========================================================================================================================================
+
 public interface Car {
 
     public default void engine(){
@@ -16,6 +23,10 @@ public interface Car {
 
 
 public class HondaCar implements Car{
+
+    public void callNormalHorn(){
+        Car.super.horn();
+    }
 
     public void engine(){
         System.out.println("I have honda engine");
