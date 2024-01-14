@@ -1,3 +1,157 @@
+Programing question using intermediate operation
+1. You are given a list of numbers. You need to find the largest number that is divisible by both 3 and 5.
+2. Write a Java program that prints all the prime numbers from 1 to 100.
+3. Return true or false if none of the number is properly divisible by 10.
+4. Given a list of integers, find out all the numbers starting with 1 using Stream functions?
+5. How to find duplicate elements in a given integers list in java using Stream functions?
+6. Given the list of integers, find the first element of the list using Stream functions?
+7. Given a list of integers, find the total number of elements present in the list using Stream functions?
+8. Given a list of integers, find the maximum value element present in it using Stream functions?
+9. Given a String, find the first non-repeated character in it using Stream functions?
+10. Given a String, find the first repeated character in it using Stream functions?
+11. Given a list of integers, sort all the values present in it in descending order using Stream functions?
+12. Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+13. Java 8 program to perform cube on list elements and filter numbers greater than 50.
+14. Write a program to print the count of each character in a String?
+15. Merge two Employee ArrayList and sort by age in using java8 stream API
+
+Learnings:
+1. (use of hashmap in finding repeating and non repeating char) If we have to find all repeating or non repeating chars then solve it through frequency of char of that string using hashmap.
+2. (use of hashmap in finding first repeating and non repeating char) Its important that map holds freuency in the order of insertion. Hence, use linkedHashMap instead of hashmap.
+3. (What is the trick for sorting in descending order?) 
+4. (How to create stream from String?) use chars()
+5. (How to create stream of char from String?) first string.char() then IntStream milegi. Then, use mapToObjs(i -> Character.valueOf((char) i)).
+6. (How to get current Datetime/Date/Localtime in java?) LocalDateTime.now(). Remember the now method. 
+7. (Write a Java 8 program to concatenate two Streams?) We use Stream.concate(list1.stream(), list2.Stream()) method.
+8. (Write a Java 8 program to sort an array and then convert the sorted array into Stream?) First use Arrays.sort(numbers) and then Arrays.stream(numbers).
+9. (How to use map to convert object into Uppercase in Java 8?) .map(String::toUpperCase)
+10. How to check if the list is null? Optional.ofNullable(words).isPresent() put this in if condition.
+11. How to null check a string before using Stream on it? Optional.ofNullable(words).orElseGet(() -> new ArrayList<String>()).stream().forEach(word -> wordFrequency.put(word, wordFrequency.get(word)==null? 1 : wordFrequency.get(word)+1));
+12. What is the logic for findig the largest element through streams? System.out.print(numbers.stream().reduce((number1, number2) -> number1>number2?number1:number2));
+13. How should you define your variable (int or Integer)? Integer
+14. How to collect a map? Map<Integer, String> employeeMap = employees.stream().collect(Collectors.toMap(employee -> employee.getId(), employee -> employee.getName()));
+
+-------------------------------------------------------------------------------------------------------------------------
+1. You are given a list of numbers. You need to find the largest number that is divisible by both 3 and 5.
+public static void main(String args[]){
+        List<Integer> numbers = List.of(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
+
+        numbers = numbers.stream().sorted().filter(number->number%3==0 && number%5==0)
+                .collect(Collectors.toList());
+
+        numbers.stream().forEach(System.out::println);
+    }
+
+2. Write a Java program that prints all the prime numbers from 1 to 100.
+public static void main(String args[]){
+        IntStream.rangeClosed(1, 100).filter(number -> IntStream.rangeClosed(2, ((number/2)+1))
+                .noneMatch(n -> number%n==0)).forEach(System.out::println);
+    }
+
+
+3. 
+
+4. Given a list of integers, find out all the numbers starting with 1 using Stream functions?
+    public static void main(String args[]){
+        List<Integer> numbers = List.of(12,22,13,43,15,199,200);
+        numbers.stream().filter(number -> {
+            return (number+"").startsWith("1");
+        }).forEach(System.out::println);
+    }
+
+5. How to find duplicate elements in a given integers list in java using Stream functions?
+    public static void main(String args[]){
+        List<Integer> numbers = List.of(12,22,12,43,22,199,200);
+        Map<Integer, Integer> frequency = new HashMap<>();
+        numbers.stream().forEach(number -> frequency.put(number, frequency.get(number)==null
+                ? 1 : frequency.get(number)+1));
+        frequency.entrySet().stream().filter(entry -> entry.getValue()>1).forEach(System.out::println);
+    }
+
+6. Given the list of integers, find the first element of the list using Stream functions?
+    public static void main(String args[]){
+        List<Integer> numbers = List.of(1,2,3,4,5);
+        numbers.stream().findFirst().ifPresent(System.out::println);
+    }
+
+
+7. Given a list of integers, find the total number of elements present in the list using Stream functions?
+    public static void main(String args[]){
+        List<Integer> numbers = List.of(1,2,3,4,5);
+        System.out.print(numbers.stream().count());
+    }
+
+
+8. Given a list of integers, find the maximum value element present in it using Stream functions?
+    public static void main(String args[]){
+        List<Integer> numbers = List.of(1,2,3,9,5,6,7);
+        System.out.print(numbers.stream().reduce((number1, number2) -> number1>number2 ? number1 : number2));
+    }
+
+9. Given a String, find the first non-repeated character in it using Stream functions?
+public static void main(String args[]){
+        String input = "HiHiltilj";
+        Map<Character, Integer> charFrequency = new LinkedHashMap<>();
+        input.chars().mapToObj(inputChar -> Character.valueOf((char)inputChar))
+                .forEach(alphabet -> charFrequency.put(alphabet, charFrequency.get(alphabet)==null
+                ? 1 : charFrequency.get(alphabet)+1));
+        charFrequency.entrySet().stream().filter(entry -> entry.getValue()==1).findFirst()
+                .ifPresent(System.out::println);
+    }
+
+10. Given a String, find the first repeated character in it using Stream functions?
+
+
+11. Given a list of integers, sort all the values present in it in descending order using Stream functions?
+public static void main(String args[]){
+        List<Integer> numbers = List.of(27,1,23,8,4,19,6,7);
+        numbers.stream().sorted((i1, i2) -> i2.compareTo(i1)).forEach(System.out::println);
+    }
+
+12. Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+    public static void main(String args[]){
+        Integer[] numbers = {1,23,4,5};
+        Map<Integer, Integer> frequency = new HashMap<>();
+        Arrays.stream(numbers).forEach(value -> frequency.put(value, frequency.get(value)==null
+                ? 1 : frequency.get(value)+1));
+        System.out.print(frequency.entrySet().stream().anyMatch(entry -> entry.getValue()>1));
+    }
+
+
+13. Java 8 program to perform cube on list elements and filter numbers greater than 50.
+    public static void main(String args[]){
+        List<Integer> numbers1 = List.of(4,5,6,7,8,1,2,3);
+
+        numbers1.stream().filter(number -> (number*number*number)>50)
+                .forEach(value -> System.out.println(value*value*value));
+    }
+
+
+14. Write a program to print the count of each character in a String?
+    public static void main(String args[]){
+        String input = "I love Hilti India";
+        Map<Character, Integer> alphaFrequency = new HashMap<>();
+
+        input.replace(" ", "").chars().mapToObj(value -> Character.toLowerCase(Character.valueOf((char) value)))
+                .forEach(value -> alphaFrequency.put(value, alphaFrequency.get(value)==null
+                        ? 1 : alphaFrequency.get(value)+1));
+        alphaFrequency.entrySet().stream().forEach(System.out::println);
+    }
+
+15. Merge two Employee ArrayList and sort by age in using java8 stream API
+
+
+
+16. 
+
+
+
+
+
+
+
+
+=====================================================================================================
 QuickRevise: Program to find square of each number in a list.
 --------------------------------------------------------------------------------
 
