@@ -1,0 +1,43 @@
+1. Merge Sorted Array (https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150)
+2. Remove Element (https://leetcode.com/problems/remove-element/description/?envType=study-plan-v2&envId=top-interview-150)
+3. 
+
+
+
+====================================================================================================================================================
+
+1. Merge Sorted Array (https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150)
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        for(int i=0, j=m; i<n; i++){
+            nums1[j] = nums2[i];
+            j++;
+        }
+        Arrays.sort(nums1);
+    }
+}
+
+Leaning:
+a. How to iterate over array elements using Stream? Arrays.stream(numbers).
+b. Since, it is told in the question that we do not have to create new array and accomodate num2 element directly in num1. This means num1 will always has space for the new element as arrays are fixed size.
+c. Approach: num1 length is m+n. So, we will replace last n element of num1 with first n element of num2. Then, use Arrays.sort(numbers) to sort the element in ascending order.
+d. Can we have more than one element initialized in for loop? Yes, something like for(i=0; j=3; i<4; i++){//code}
+e. How can we sort array elements? Arrays.sort(numbers).
+
+
+2. Remove Element (https://leetcode.com/problems/remove-element/description/?envType=study-plan-v2&envId=top-interview-150)
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int count=0;
+        int occurances=0;
+        while(count<nums.length){
+            if(nums[count]==val){
+                occurances++;
+                nums[count]=101;
+            }
+            count++;
+        }
+        Arrays.sort(nums);
+        return ((nums.length)-occurances);
+    }
+}
