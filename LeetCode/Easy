@@ -1,7 +1,7 @@
 1. Merge Sorted Array (https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150)
 2. Remove Element (https://leetcode.com/problems/remove-element/description/?envType=study-plan-v2&envId=top-interview-150)
-3. 
-
+3. Remove  Duplicates from Sorted Array (https://leetcode.com/problems/remove-duplicates-from-sorted-array/?envType=study-plan-v2&envId=top-interview-150)
+4. Majority Element (https://leetcode.com/problems/majority-element/description/?envType=study-plan-v2&envId=top-interview-150)
 
 
 ====================================================================================================================================================
@@ -17,7 +17,7 @@ class Solution {
     }
 }
 
-Leaning:
+Learning:
 a. How to iterate over array elements using Stream? Arrays.stream(numbers).
 b. Since, it is told in the question that we do not have to create new array and accomodate num2 element directly in num1. This means num1 will always has space for the new element as arrays are fixed size.
 c. Approach: num1 length is m+n. So, we will replace last n element of num1 with first n element of num2. Then, use Arrays.sort(numbers) to sort the element in ascending order.
@@ -41,3 +41,67 @@ class Solution {
         return ((nums.length)-occurances);
     }
 }
+
+3. Remove  Duplicates from Sorted Array (https://leetcode.com/problems/remove-duplicates-from-sorted-array/?envType=study-plan-v2&envId=top-interview-150)
+Below is my submision which is running in 6ms.
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int count=0;
+        int occurances=0;
+        while(count<nums.length){
+            if(nums[count]==val){
+                occurances++;
+                nums[count]=101;
+            }
+            count++;
+        }
+        Arrays.sort(nums);
+        return ((nums.length)-occurances);
+    }
+}
+
+Below is other's code which is running in 1ms.
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int i = 0;
+        for(int n: nums){
+            if(i == 0 || n > nums[i - 1]){
+                nums[i] = n;
+                i++;
+            }
+        }
+        return i;
+    }
+}
+
+4. Majority Element (https://leetcode.com/problems/majority-element/description/?envType=study-plan-v2&envId=top-interview-150)
+Below is my submision which is running in 15ms.
+import java.util.Map.*;
+class Solution {
+    public int majorityElement(int[] nums) {
+        int majorityTimes = (nums.length)/2;
+        int result=0;
+        Map<Integer, Integer> numsFrequency = new HashMap<>();
+        for(int i=0; i<nums.length; i++){
+            if(numsFrequency.get(nums[i]) !=null){
+                numsFrequency.put(nums[i], numsFrequency.get(nums[i])+1);
+            }else{
+                numsFrequency.put(nums[i], 1);
+            } 
+        }
+        for(Entry<Integer, Integer> entry: numsFrequency.entrySet()){
+            if(entry.getValue()>majorityTimes){
+                result=entry.getKey();
+            }
+        }
+        return result;
+    }
+}
+
+
+
+Learning:
+a. (Is it right to write like "for(Entry entry: Map)"?) If using forEach for Map, then dont do like for(Entry entry: Map). But do like for(Entry entry: Map.entrySet())
+b. (Will it be sufficient to use "import java.util.*" for importing? If not, then why?) It will be not be sufficient. import java.util.* import all classes inside util but not their sub classes. Like, Entry is subclass of Map. Hence, we need to do something like "import java.util.Map.*".
+c. (It it better to add a step of checking value in HM in loop of 50 iteration or having a new loop doing the same but only 10 iteration?) its better to have another loop with lesser iteration than adding the same step for 50 iteration just to save a loop.
+d. (how is it written? "elseIf" or "else if"?) Its written as "else if".
