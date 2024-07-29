@@ -1,0 +1,8 @@
+1. Example of Not method in Predicate. 
+    Predicate isEven = (input) -> ((int)input)%2==0;
+    Predicate greaterThan10 = (input) -> ((int)input>10);
+    List<Integer> numbers = Arrays.asList(1,2,3);
+    numbers.stream().filter(Predicate.not(isEven)).forEach(System.out::println);
+
+2. 
+
