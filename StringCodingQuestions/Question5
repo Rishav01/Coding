@@ -25,7 +25,10 @@ public class Test {
 }
 
 /*
-Use Java 8 coding only:
+Approach:
+1. One loop through the string and put char as key and count as value.
+
+Skills:
 1. Printing a map should be done through map.entrySet().stream().forEach()
 2. input.char() gives a input stream of ascii value. Since, we wanted char in the map hence i had to print the alphabet
 frequency
