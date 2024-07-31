@@ -23,7 +23,8 @@ public class Test {
 Solution 2:
 
 ------------------------------------------------------------------------
-1. Approach for Solution: 
+1. Approach 
+solution 1: 
     a. We need to iterate from last index to 0. We will take one char and convert it into integer.
     b. To convert char into int. We can do something like below
 ch=9;
@@ -31,4 +32,5 @@ int a = ch - '0';
 a becomes 9
     c. We will keep a counter of number of digit (N). So, we can formalize it like number = (N)*integer + number; and n = n*10;
 
-2. Another way is to use Integer.parseInt(String).
+Solution 2:
+Another way is to use Integer.parseInt(String).
