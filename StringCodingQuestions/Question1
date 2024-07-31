@@ -1,4 +1,4 @@
-Write a Java program to find the duplicate words and their number of occurrences in a string?
+Write a Java program to find the duplicate words and their number of occurrences in a string.
 public static void main(String[] args)
     {
         duplicateWords("Bread butter and bread");
@@ -14,7 +14,7 @@ bread : 2
 java : 3
 man : 3
 ------------------------------------------------------------------------------------------   
-Solution:
+Solution 1: Time Complexity O(n)
 
 import java.util.*;
 
@@ -43,11 +43,19 @@ public class Test {
 }
 
 /*
-1. Skill: to tokenize a sentence with delimeter space or anything else.
-2. Skill: How to print the key and value pair of a map
+Approach:
+a. We first need to get the words out of the string. We can do it with split(), stringTokenizer or simply by i and j with help of space.
+b. Once we get the word then we can iterate over the list of word to store in the map (the word as key and frequncy as value)
+
+Note:
+a. If we have to avoid using Map then we can need to have another loop. Instead of storing frequncy in map we will simply print it. 
+(Ref: https://www.linkedin.com/pulse/program-write-java-find-duplicate-words-number-string-praveen-kumar/)
+
+Skills/Knowledge:
+a. to tokenize a sentence with delimeter space or anything else.
+b. How to print the key and value pair of a map
 3. HashMap get(key) returns null when entry with that key is not present
 4. HashMap keys are case sensitive. So, Bread and bread will be considered two different keys.
 5. There could be one more way. Use String class split(" ") method which will give String[] words. Then, use this string array words in for each loop for get wordFrequency map
-6. Complexity: O(2n) -> O(n)
-7. Skill: To tokenize the sentence without StringTokenzier.
+7. To tokenize the sentence without StringTokenzier.
  */
