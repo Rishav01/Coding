@@ -28,6 +28,7 @@ public class Test {
 }
 
 /*
+Approach:
 1. Its a trick learning question. Replace that char with empty string and then the difference of length with original
 String will give result.
 Complexity: O(1)
