@@ -1,10 +1,10 @@
 https://javaconceptoftheday.com/java-interview-programs-on-strings/
 
-1) Write a Java program to find the duplicate words and their number of occurrences in a string?
-2) Write a Java program to count the number of words in a string?
-3) Write a Java program to count the total number of occurrences of a given character in a string without using any loop?
-4) Write a Java program to reverse a string?
-5) Write a Java program to count the number of occurrences of each character in a string?
+1) Write a Java program to find the duplicate words and their number of occurrences in a string? #String, #Word, #FindOccurances, #Medium
+2) Write a Java program to count the number of words in a string? #String, #Word, #Trick, #Easy
+3) Write a Java program to count the total number of occurrences of a given character in a string without using any loop? #Trick, #Easy
+4) Write a Java program to reverse a string? #String, #Reverse, #Easy
+5) Write a Java program to count the number of occurrences of each character in a string? #String, #FindOccurances, #Easy
 6) Write a Java program to remove all white spaces from a string?
 7) Write a Java program to find duplicate characters in a string?
 8) Write a Java program to check whether one string is a rotation of another?
@@ -31,7 +31,7 @@ https://javaconceptoftheday.com/java-interview-programs-on-strings/
 29) Most repetitive character in a string
 
 https://www.geeksforgeeks.org/top-50-string-coding-problems-for-interviews/
-31. Implement Atoi (https://www.geeksforgeeks.org/write-your-own-atoi/)
-32. Program to validate an IP address (https://www.geeksforgeeks.org/program-to-validate-an-ip-address/)
+31. Implement Atoi (https://www.geeksforgeeks.org/write-your-own-atoi/) #Easy
+32. Program to validate an IP address (https://www.geeksforgeeks.org/program-to-validate-an-ip-address/) #Medium
 33. License Key Formatting (https://www.geeksforgeeks.org/license-key-formatting/)
 33. 
