@@ -46,6 +46,10 @@ public class Test {
 
 
 /*
+Approach:
+a. Use split() to get word array and then check the size of the array
+b. Checking the spaces in the string and returning space count + 1.
+
 1. Key thing here is to know about split(" ") method which directly gives the words array.
 2. Its good to take cases like string is empty. It shows we are alert to checking untold user cases.
 3. Logic for just count in second solution is simple. The number will be 1 + the occurances of space followed by a word 
